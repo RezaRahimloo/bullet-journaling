@@ -11,9 +11,11 @@
     <header>
         <nav id="main-nav">
             <div id="logo">
-                <a asp-controller="Home" asp-action="Index">Murder</a>
+                <a class="logo" asp-controller="Home" asp-action="Index">Murder</a>
             </div>
+            <span style="font-size:30px;cursor:pointer" class="openbtn" onclick="openNav()">&#9776;</span>
             <div class="links-wrapper">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <a href="" class="nav-link">Smoking</a>
                 <a href="" class="nav-link">Workout</a>
                 <a href="" class="nav-link">MBA</a>
@@ -24,6 +26,7 @@
                 <partial name="_LoginPartial" />
             </div>
         </nav>
+        <div id="grey-shade"></div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">

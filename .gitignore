@@ -2,3 +2,8 @@
 *.json
 *.bin
 *.exe
+*.dll
+*.cache
+*.sentinel
+*.targets
+*.props

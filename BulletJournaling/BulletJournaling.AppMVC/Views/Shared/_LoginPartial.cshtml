@@ -6,11 +6,11 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <a>@User.Identity?.Name</a>
-    <button class="nav-link">Logout</button>
+    <button id="logout" class="nav-link">Logout</button>
 }
 else
 {
-    <a class="nav-link" href="">Login</a>
-    <a class="nav-link" href="">Register</a>
+    <a id="login" class="nav-link" href="">Signin</a>
+    <a id="register" class="nav-link" href="">Register</a>
 }
 
