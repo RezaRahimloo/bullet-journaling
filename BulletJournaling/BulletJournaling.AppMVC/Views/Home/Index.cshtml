@@ -1,8 +1,32 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Bullet Journaling";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/css/home/index.css" asp-append-version="true" />
+}
+@section Scripts {
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+}
+<div class="hero-container">
+    <div class="hero-text-wrapper">
+        <span class="hero-text">Start Tracking yourself NOW!</span>
+        <a class="hero-action">Let's go</a>
+    </div>
+    <img id="desktop-hero" class="hero-img" src="~/images/desktop_hero.jpg" alt="bullet journaling-tracking">
+    <img id="mobile-hero" class="hero-img" src="~/images/mobile_hero.jpg" alt="bullet journaling-tracking">
 </div>
+<article id="inspiration-QA" class="description">
+    <h2 class="question">Why shoud you Track yourself?</h2>
+    <span class="answer">
+        Tracking helps you stay focused on what's important to reaching your goal.
+        </span>
+    <span class="answer">
+        It helps you identify potential obstacles and strategies for how to overcome them. 
+    </span>
+    <span class="answer">
+        It can help you set more realistic goals and stay positive along the way.
+    </span>
+    <h3 class="inspiration">
+        You can't make improvements on something you don't measure.
+    </h3>
+</article>
