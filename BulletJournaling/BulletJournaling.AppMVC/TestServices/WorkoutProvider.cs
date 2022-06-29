@@ -12,8 +12,8 @@ public class WorkoutProvider
             Console.WriteLine(_workouts.Count);
             return _workouts;
         }
-        DateTime fiftySixDaysAgo = DateTime.Now.AddDays(-55);
-        for(int i =0; i < 56; i++)
+        DateTime fiftySixDaysAgo = DateTime.Now.AddDays(-111);
+        for(int i =0; i < 112; i++)
         {
             if(i % 2 == 0)
             {
