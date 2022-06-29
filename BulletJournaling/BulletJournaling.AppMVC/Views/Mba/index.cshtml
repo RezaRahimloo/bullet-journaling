@@ -1,0 +1,42 @@
+@model List<MbaModel>;
+@{
+    ViewData["Title"] = "MBA";
+    DateOnly sixteenWeeksAgo = DateOnly.FromDateTime(DateTime.Now).AddDays(-111);
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Mba/index.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/js/Mba/index.js" asp-append-version="true"></script>
+}
+<div id="mba-calender" class="calender">
+    @for (int i = 0; i < 16; i++)
+    {
+        <div class="week">
+            @for (int j = 0; j < 7; j++)
+            {
+                int day = i*7 + j;
+                Console.WriteLine(day);
+                if(@Model[day].DidDo)
+                {
+                    <div class="day mba dropdown" data-did="true" data-date="@sixteenWeeksAgo.AddDays(day)">
+                        <div class="dropdown-content">
+                            <span class="number info">
+                               @Model[day].Type : @Model[day].Part
+                            </span>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="day mba dropdown" data-did="false" data-date="@sixteenWeeksAgo.AddDays(day)">
+
+                    </div>
+                }
+                
+            }
+        </div>
+    }
+</div>
+<h2></h2>

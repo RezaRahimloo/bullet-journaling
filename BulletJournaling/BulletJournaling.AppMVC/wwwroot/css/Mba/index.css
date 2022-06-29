@@ -1,0 +1,42 @@
+main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+#mba-calender{
+    display: grid;
+    grid-template-columns: repeat(4, 300px);
+    margin-top: 60px;
+    
+}
+
+.day.mba{
+    border: 1px solid rgb(94, 94, 94);
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    background-color: crimson;
+}
+.dropdown[data-did="true"]{
+    background-color: green;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    min-width: 90px;
+}
+.dropdown-content .info{
+
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
