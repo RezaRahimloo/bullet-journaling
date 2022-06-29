@@ -3,7 +3,7 @@
 
 @{
     ViewData["Title"] = "Workout";
-    DateOnly fiftySixDaysAgo = DateOnly.FromDateTime(DateTime.Now).AddDays(-111);
+    DateOnly sixteenWeeksAgo = DateOnly.FromDateTime(DateTime.Now).AddDays(-111);
     //DateOnly fiftySixDaysAgo = dateNow.AddDays(-56);
 }
 
@@ -23,7 +23,7 @@
                 Console.WriteLine(day);
                 if(@Model[day].didWorkout)
                 {
-                    <div class="day workout dropdown" data-did="true" data-date="@fiftySixDaysAgo.AddDays(day)">
+                    <div class="day workout dropdown" data-did="true" data-date="@sixteenWeeksAgo.AddDays(day)">
                         <div class="dropdown-content">
                             <span class="type info">
                                 you worked out your: @Model[day].Type
@@ -39,7 +39,7 @@
                 }
                 else
                 {
-                    <div class="day workout dropdown" data-did="false" data-date="@fiftySixDaysAgo.AddDays(day)">
+                    <div class="day workout dropdown" data-did="false" data-date="@sixteenWeeksAgo.AddDays(day)">
 
                     </div>
                 }

@@ -17,6 +17,9 @@ builder.Services.AddControllersWithViews();
 
 //Custom service
 builder.Services.AddSingleton<WorkoutProvider>();
+builder.Services.AddTransient<SmokesProvider>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
