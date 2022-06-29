@@ -1,0 +1,43 @@
+@model List<SmokingModel>;
+@{
+    ViewData["Title"] = "Smoking";
+    DateOnly sixteenWeeksAgo = DateOnly.FromDateTime(DateTime.Now).AddDays(-111);
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Smoking/index.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/js/Smoking/index.js" asp-append-version="true"></script>
+}
+<div id="smoking-calender" class="calender">
+    @for (int i = 0; i < 16; i++)
+    {
+        <div class="week">
+            @for (int j = 0; j < 7; j++)
+            {
+                int day = i*7 + j;
+                Console.WriteLine(day);
+                if(@Model[day].DidSmoke)
+                {
+                    <div class="day smoking dropdown" data-did="true" data-date="@sixteenWeeksAgo.AddDays(day)">
+                        <div class="dropdown-content">
+                            <span class="number info" data-number="@Model[day].Number">
+                               @Model[day].Number cigarrets!
+                            </span>
+                            
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="day smoking dropdown" data-did="false" data-date="@sixteenWeeksAgo.AddDays(day)">
+
+                    </div>
+                }
+                
+            }
+        </div>
+    }
+</div>
+<h2>you Smoked @Model?.Sum(s => s.Number) ciggarets in the last 16 weeks!</h2>

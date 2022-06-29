@@ -1,25 +1,22 @@
 using BulletJournaling.AppMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using TestServices;
 
 namespace BulletJournaling.AppMVC.Controllers
 {
     public class SmokingController : Controller
     {
+        private readonly List<SmokingModel> _smokings;
+        public SmokingController(SmokesProvider smokesProvider)
+        {
+            _smokings = smokesProvider.GetSmokings();
+        }
         public IActionResult Index()
         {
-            return View();
+            return View(_smokings);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+       
     }
 }
