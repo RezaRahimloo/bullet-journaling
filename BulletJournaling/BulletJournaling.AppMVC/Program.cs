@@ -1,6 +1,7 @@
 using BulletJournaling.AppMVC.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TestServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,8 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+//Custom service
+builder.Services.AddSingleton<WorkoutProvider>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
