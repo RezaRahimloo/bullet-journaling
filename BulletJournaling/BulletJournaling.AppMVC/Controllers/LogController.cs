@@ -7,7 +7,7 @@ namespace BulletJournaling.AppMVC.Controllers
 {
     public class LogController : Controller
     {
-        private readonly List<LogModel> _logs = new();
+        private readonly List<DayLogModel> _logs = new();
         public LogController()
         {
             PopulateLogs();
@@ -23,19 +23,30 @@ namespace BulletJournaling.AppMVC.Controllers
             {
                 if(i % 4 == 0)
                 {
-                    _logs?.Add(new LogModel 
+                    _logs?.Add(new DayLogModel 
                     { 
                         HasLog = false
                     });
                 }
                 else
                 {
-                    _logs?.Add(new LogModel
+                    List<LogModel> logs = new();
+                    logs.Add(new LogModel
                     {
-                        HasLog = true,
                         Title = "Learend DI",
                         Description = "Did this and that",
-                        DurationMinutes = new Random().Next(1, 12),
+                        DurationMinutes = new Random().Next(1, 12)
+                    });
+                    logs.Add(new LogModel
+                    {
+                        Title = "Learend CI/CD",
+                        Description = "Did this and that",
+                        DurationMinutes = new Random().Next(1, 12)
+                    });
+                    _logs?.Add(new DayLogModel
+                    {
+                        HasLog = true,
+                        Logs = logs,
                         day = sixteenWeeksAgo.AddDays(-i)
                     });
                 }
