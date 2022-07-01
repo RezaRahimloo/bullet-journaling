@@ -2,9 +2,6 @@
 @{
     ViewData["Title"] = "MBA";
     int proccessedDays = 0;
-    
-    
-    
 }
 
 @section Styles {
@@ -22,9 +19,9 @@
         int thisMonthsProccessed = 0;
         <div class="month">
             <div class="month-header">
-                <div class="month-name">
+                <h3 class="month-name">
                     @lastFourMonths.ToString("MMMM")
-                </div>
+                </h3>
                 <div class="day-names">
                     <div class="day-name">sun</div>
                     <div class="day-name">mon</div>
@@ -38,7 +35,6 @@
             </div>
             @for (int week = 0; week < 5; week++)
             {
-                
                 <div class="week">
                     @{int k =0;}
                     @for (int day = 0; day < 7; day++)
@@ -50,10 +46,6 @@
                             </div>
                             k++;
                             continue;
-                        }
-                        if(  proccessedDays >= Model.Count)
-                        {
-                            break;
                         }
                         if(@Model[proccessedDays].HasLog)
                         {
@@ -87,7 +79,6 @@
                         {
                             break;
                         }
-                        
                     }
                 </div>
             }

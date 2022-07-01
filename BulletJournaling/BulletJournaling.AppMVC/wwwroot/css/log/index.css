@@ -4,13 +4,18 @@ main{
     flex-direction: column;
     align-items: center;
 }
-#log-calender{
+/* #log-calender{
     display: grid;
     grid-template-columns: repeat(4, 300px);
     margin-top: 60px;
     
+} */
+#log-calender{
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px;
+    
 }
-
 .day.log{
     border: 1px solid rgb(94, 94, 94);
 }
@@ -36,7 +41,28 @@ main{
 .dropdown-content .info{
 
 }
-
+.month{
+    margin: 20px;
+}
 .dropdown:hover .dropdown-content {
     display: block;
+}
+.month-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.week{
+    display: flex;
+    justify-content: flex-start;
+}
+.day-names{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.day-name{
+    width: 30px;
+    margin: 0px 2px;
 }
