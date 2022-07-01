@@ -6,7 +6,7 @@ namespace BulletJournaling.AppMVC.Models
     {
         [Required]
         public bool HasLog { get; set; }
-        public DateOnly? day { get; set; }
+        public DateOnly day { get; set; }
         public List<LogModel>? Logs { get; set; }
     }
 }

@@ -1,7 +1,10 @@
 @model List<DayLogModel>;
 @{
     ViewData["Title"] = "MBA";
-    DateOnly sixteenWeeksAgo = DateOnly.FromDateTime(DateTime.Now).AddDays(-111);
+    int proccessedDays = 0;
+    
+    
+    
 }
 
 @section Styles {
@@ -11,33 +14,82 @@
     <script src="~/js/log/index.js" asp-append-version="true"></script>
 }
 <div id="log-calender" class="calender">
-    @for (int i = 0; i < 16; i++)
-    {
-        <div class="week">
-            @for (int j = 0; j < 7; j++)
+    @for (int month = -3; month < 1; month++)
+    {  
+        DateOnly fourMonthsAgo = DateOnly.FromDateTime(DateTime.Now).AddMonths(month);
+        DateOnly lastFourMonths = new(fourMonthsAgo.Year, fourMonthsAgo.Month, 1);
+        int daysOfMonth = DateTime.DaysInMonth(lastFourMonths.Year, lastFourMonths.Month);
+        int thisMonthsProccessed = 0;
+        <div class="month">
+            <div class="month-header">
+                <div class="month-name">
+                    @lastFourMonths.ToString("MMMM")
+                </div>
+                <div class="day-names">
+                    <div class="day-name">sun</div>
+                    <div class="day-name">mon</div>
+                    <div class="day-name">tue</div>
+                    <div class="day-name">wed</div>
+                    <div class="day-name">thr</div>
+                    <div class="day-name">fri</div>
+                    <div class="day-name">sat</div>
+                    
+                </div>
+            </div>
+            @for (int week = 0; week < 5; week++)
             {
-                int day = i*7 + j;
-                Console.WriteLine(day);
-                if(@Model[day].HasLog)
-                {
-                    <div class="day log dropdown" data-did="true" data-date="@sixteenWeeksAgo.AddDays(day)">
-                        <div class="dropdown-content">
-                            @foreach(var log in Model[day].Logs)
-                            {
-                                <span class="title info">
-                                    @log.Title
-                                </span>
-                            }
-                        </div>
-                    </div>
-                }
-                else
-                {
-                    <div class="day log dropdown" data-did="false" data-date="@sixteenWeeksAgo.AddDays(day)">
-
-                    </div>
-                }
                 
+                <div class="week">
+                    @{int k =0;}
+                    @for (int day = 0; day < 7; day++)
+                    {
+                        
+                        if (week == 0 && k < (int)lastFourMonths.DayOfWeek)
+                        {
+                            <div class="day log dropdown" data-did="false" style="background-color: grey;" data-date="">
+                            </div>
+                            k++;
+                            continue;
+                        }
+                        if(  proccessedDays >= Model.Count)
+                        {
+                            break;
+                        }
+                        if(@Model[proccessedDays].HasLog)
+                        {
+                            <div class="day log dropdown" data-did="true" data-date="">
+                                <div class="dropdown-content">
+                                    <h3 class="title info">
+                                        @Model[proccessedDays].day.ToString()
+                                    </h3>
+                                    @foreach(var log in Model[proccessedDays].Logs)
+                                    {
+                                        <span class="title info">
+                                            @log.Title
+                                        </span>
+                                        
+                                    }
+                                    <span class="title info">
+                                        @Model[proccessedDays].day.DayOfWeek
+                                    </span>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="day log dropdown" data-did="false" data-date="">
+
+                            </div>
+                        }
+                        proccessedDays++;
+                        thisMonthsProccessed++;
+                        if(thisMonthsProccessed == daysOfMonth)
+                        {
+                            break;
+                        }
+                        
+                    }
+                </div>
             }
         </div>
     }

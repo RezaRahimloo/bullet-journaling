@@ -18,41 +18,44 @@ namespace BulletJournaling.AppMVC.Controllers
         }
         private void PopulateLogs()
         {
-            DateOnly sixteenWeeksAgo = DateOnly.FromDateTime(DateTime.Now).AddDays(-111);
-            for(int i =0; i < 112; i++)
-            {
-                if(i % 4 == 0)
-                {
-                    _logs?.Add(new DayLogModel 
-                    { 
-                        HasLog = false
-                    });
-                }
-                else
-                {
-                    List<LogModel> logs = new();
-                    logs.Add(new LogModel
-                    {
-                        Title = "Learend DI",
-                        Description = "Did this and that",
-                        DurationMinutes = new Random().Next(1, 12)
-                    });
-                    logs.Add(new LogModel
-                    {
-                        Title = "Learend CI/CD",
-                        Description = "Did this and that",
-                        DurationMinutes = new Random().Next(1, 12)
-                    });
-                    _logs?.Add(new DayLogModel
-                    {
-                        HasLog = true,
-                        Logs = logs,
-                        day = sixteenWeeksAgo.AddDays(-i)
-                    });
-                }
             
+            for (int i = -3; i < 1; i++)
+            {
+                DateOnly fourMonthsAgo = DateOnly.FromDateTime(DateTime.Now).AddMonths(i);
+                DateOnly lastFourMonths = new(fourMonthsAgo.Year, fourMonthsAgo.Month, 1);
+                for (int j = 0; j < DateTime.DaysInMonth(lastFourMonths.Year, lastFourMonths.Month); j++)
+                {
+                    if(false)
+                    {
+                        _logs?.Add(new DayLogModel 
+                        { 
+                            HasLog = false
+                        });
+                    }
+                    else
+                    {
+                        List<LogModel> logs = new();
+                        logs.Add(new LogModel
+                        {
+                            Title = "Learend DI",
+                            Description = "Did this and that",
+                            DurationMinutes = new Random().Next(1, 12)
+                        });
+                        logs.Add(new LogModel
+                        {
+                            Title = "Learend CI/CD",
+                            Description = "Did this and that",
+                            DurationMinutes = new Random().Next(1, 12)
+                        });
+                        _logs.Add(new DayLogModel
+                        {
+                            HasLog = true,
+                            Logs = logs,
+                            day = lastFourMonths.AddDays(j)
+                        });
+                    }
+                }
             }
-       
         }
     }
 }
