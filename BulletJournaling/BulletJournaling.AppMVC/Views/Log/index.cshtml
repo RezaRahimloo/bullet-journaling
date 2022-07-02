@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/log/index.css" asp-append-version="true" />
 }
 @section Scripts {
-    <script src="~/js/log/index.js" asp-append-version="true"></script>
+    <script src="~/js/log/log.js" asp-append-version="true"></script>
 }
 <div id="log-calender" class="calender">
     @for (int month = -3; month < 1; month++)
@@ -49,21 +49,30 @@
                         }
                         if(@Model[proccessedDays].HasLog)
                         {
-                            <div class="day log dropdown" data-did="true" data-date="">
+                            <div class="day log dropdown" data-did="true" data-date="" tabindex="@proccessedDays">
                                 <div class="dropdown-content">
-                                    <h3 class="title info">
+                                    <div class="title info">
                                         @Model[proccessedDays].day.ToString()
-                                    </h3>
+                                    </div>
                                     @foreach(var log in Model[proccessedDays].Logs)
                                     {
-                                        <span class="title info">
+                                        <div class="title info">
                                             @log.Title
-                                        </span>
+                                        </div>
                                         
                                     }
-                                    <span class="title info">
-                                        @Model[proccessedDays].day.DayOfWeek
-                                    </span>
+                                </div>
+                                <div class="logs-content">
+                                    @foreach(var log in Model[proccessedDays].Logs)
+                                    {
+                                        <div class="log-header">
+                                            <span class="log-title">@log.Title</span>
+                                            <span class="log-duration">@log.DurationMinutes</span>
+                                        </div>
+                                        <div class="log-info">
+                                            @log.Description
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         }
@@ -85,4 +94,6 @@
         </div>
     }
 </div>
-<h2></h2>
+<div id="day-activites">
+
+</div>
