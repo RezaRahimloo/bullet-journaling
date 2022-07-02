@@ -93,6 +93,31 @@ main{
 .logs-content{
     display: none;
 }
+#day-activites{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    padding: 30px;
+}
+.log-header{
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #919191;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 80px;
+}
+.log-info{
+    align-items: center;
+    background-color: #919191;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
 @media (max-width: 600px){
     #log-calender{
         flex-direction: column;
