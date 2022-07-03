@@ -65,13 +65,16 @@
                                 <div class="logs-content">
                                     @foreach(var log in Model[proccessedDays].Logs)
                                     {
-                                        <div class="log-header">
-                                            <h4 class="log-title">@log.Title</h4>
-                                            <span class="log-duration">@log.DurationMinutes mins</span>
+                                        <div class="log-wrapper">
+                                            <div class="log-header">
+                                                <h4 class="log-title">@log.Title</h4>
+                                                <span class="log-duration">@log.DurationMinutes mins</span>
+                                            </div>
+                                            <div class="log-info">
+                                                @log.Description
+                                            </div>
                                         </div>
-                                        <div class="log-info">
-                                            @log.Description
-                                        </div>
+                                        
                                     }
                                 </div>
                             </div>

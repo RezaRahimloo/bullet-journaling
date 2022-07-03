@@ -38,7 +38,7 @@ namespace BulletJournaling.AppMVC.Controllers
                         logs.Add(new LogModel
                         {
                             Title = "Learend DI",
-                            Description = "Did this and that",
+                            Description = "Did sadskajsajdlksajdsa askl jdlaskj slak jals jaslj skadjals jds jask jaslkdj aslj sald jaskdj asdj sakj lasj sakjdsak jksaj kas k jdasj ash asj lasj lsaj lksaj lasj lkasj lasj saj dj j as hidushf isudh suidhfsd hfsdi hisd fhiudch fiu sdhsdihf dihfiudh iudjh i h hdi hfd  hidh fid hiu hsihdf hidf hilfdh udf fhiud idf hiudf hil sfiug fiu hdfgif hfd hidf hiu hifdif gifh gfi hfui this and that",
                             DurationMinutes = new Random().Next(1, 12)
                         });
                         logs.Add(new LogModel

@@ -100,23 +100,31 @@ main{
     flex-direction: column;
     width: 100%;
     padding: 30px;
+    font-size: large;
+}
+.log-wrapper{
+    min-width: 300px;
+    max-width: 95vw;
+    background-color: rgb(116, 179, 199);
+    border-radius: 10px;
+    margin-top: 60px;
+    padding: 20px;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 .log-header{
     display: flex;
-    width: 200px;
+    min-width: 300px;
+    max-width: 95vw;
     justify-content: space-between;
     align-items: center;
-    background-color: #919191;
     padding: 10px;
-    border-radius: 10px;
-    margin-top: 80px;
 }
 .log-info{
     align-items: center;
-    background-color: #919191;
     padding: 10px;
     margin-top: 10px;
-    border-radius: 10px;
+    
 }
 @media (max-width: 600px){
     #log-calender{
@@ -128,5 +136,8 @@ main{
     #log-calender{
         width: 80vw;
         justify-content: center;
+    }
+    #day-activites{
+        align-items: center;
     }
 }
