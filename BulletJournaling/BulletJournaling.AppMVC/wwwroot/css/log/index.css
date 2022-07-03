@@ -25,7 +25,6 @@ main{
 }
 .day.log:focus{
     outline: 2px solid black;
-    background-color: rgb(145, 155, 53);
 }
 .dropdown {
     position: relative;

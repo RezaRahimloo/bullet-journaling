@@ -5,14 +5,21 @@ main{
     align-items: center;
 }
 #smoking-calender{
-    display: grid;
-    grid-template-columns: repeat(4, 300px);
+    display: flex;
+    flex-direction: row;
     margin-top: 60px;
+    flex-wrap: wrap;
+    width: 100vw;
+    
+    justify-content: center;
     
 }
-
 .day.smoking{
     border: 1px solid rgb(94, 94, 94);
+}
+.day.smoking:focus{
+    outline: 2px solid black;
+    
 }
 .dropdown {
     position: relative;
@@ -20,23 +27,71 @@ main{
     width: 30px;
     height: 30px;
     margin: 3px;
-    background-color: crimson;
+    background-color: rgb(80, 218, 99);
+    border-radius: 6px;
 }
 .dropdown[data-did="true"]{
-    background-color: green;
+    background-color: rgb(43, 43, 43);
 }
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    width: max-content;
+    top: 20px;
     z-index: 1;
-    min-width: 90px;
+    
 }
-.dropdown-content .info{
-
+.month{
+    margin: 20px;
+    width: 250px;
+    display: flex;
+    
+    
+    flex-direction: column;
 }
-
 .dropdown:hover .dropdown-content {
     display: block;
+    cursor: default;
+}
+.month-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    
+}
+.week{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    
+}
+.day-names{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    
+}
+.day-name{
+    width: 30px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+}
+
+@media (max-width: 600px){
+    #smoking-calender{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width: 1160px){
+    #smoking-calender{
+        width: 80vw;
+        justify-content: center;
+    }
 }
