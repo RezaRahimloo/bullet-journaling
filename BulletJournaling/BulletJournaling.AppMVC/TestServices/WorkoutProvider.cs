@@ -7,35 +7,34 @@ public class WorkoutProvider
 
     public List<WorkoutModel> GetWorkouts()
     {
-        if(_workouts?.Count > 0)
+        for (int i = -3; i < 1; i++)
         {
-            Console.WriteLine(_workouts.Count);
-            return _workouts;
-        }
-        DateTime fiftySixDaysAgo = DateTime.Now.AddDays(-111);
-        for(int i =0; i < 112; i++)
-        {
-            if(i % 2 == 0)
+            DateOnly fourMonthsAgo = DateOnly.FromDateTime(DateTime.Now).AddMonths(i);
+            DateOnly lastFourMonths = new(fourMonthsAgo.Year, fourMonthsAgo.Month, 1);
+            for (int j = 0; j < DateTime.DaysInMonth(lastFourMonths.Year, lastFourMonths.Month); j++)
             {
-                _workouts?.Add(new WorkoutModel 
-                { 
-                    didWorkout = true, 
-                    StartTime = fiftySixDaysAgo.AddDays(i),
-                    Type = "Murder",
-                    DurationMintues = 666
-                });
-                Console.WriteLine("added_true");
-            }
-            else
-            {
-                _workouts?.Add(new WorkoutModel
+                if(j%4 == 0)
                 {
-                    didWorkout = false
-                });
-                Console.WriteLine("added_false");
+                    _workouts?.Add(new WorkoutModel 
+                    { 
+                        didWorkout = false
+                    });
+                }
+                else
+                {
+                    _workouts?.Add(new WorkoutModel
+                    {
+                        didWorkout = true,
+                        StartTime = lastFourMonths.AddDays(j).ToDateTime(new TimeOnly(
+                            hour: 4,
+                            minute: 30
+                        )),
+                        Type = "Murder",
+                        DurationMintues = 666
+                    });
+                }
             }
         }
-        Console.WriteLine(_workouts.Count);
         return _workouts;
     }
 }

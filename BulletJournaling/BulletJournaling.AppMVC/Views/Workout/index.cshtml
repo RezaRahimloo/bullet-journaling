@@ -3,8 +3,7 @@
 
 @{
     ViewData["Title"] = "Workout";
-    DateOnly sixteenWeeksAgo = DateOnly.FromDateTime(DateTime.Now).AddDays(-111);
-    //DateOnly fiftySixDaysAgo = dateNow.AddDays(-56);
+    int proccessedDays = 0;
 }
 
 @section Styles {
@@ -14,36 +13,74 @@
     <script src="~/js/workout/index.js" asp-append-version="true"></script>
 }
 <div id="workout-calender" class="calender">
-    @for (int i = 0; i < 16; i++)
-    {
-        <div class="week">
-            @for (int j = 0; j < 7; j++)
+    @for (int month = -3; month < 1; month++)
+    {  
+        DateOnly fourMonthsAgo = DateOnly.FromDateTime(DateTime.Now).AddMonths(month);
+        DateOnly lastFourMonths = new(fourMonthsAgo.Year, fourMonthsAgo.Month, 1);
+        int daysOfMonth = DateTime.DaysInMonth(lastFourMonths.Year, lastFourMonths.Month);
+        int thisMonthsProccessed = 0;
+        <div class="month">
+            <div class="month-header">
+                <h3 class="month-name">
+                    @lastFourMonths.ToString("MMMM")
+                </h3>
+                <div class="day-names">
+                    <div class="day-name">sun</div>
+                    <div class="day-name">mon</div>
+                    <div class="day-name">tue</div>
+                    <div class="day-name">wed</div>
+                    <div class="day-name">thr</div>
+                    <div class="day-name">fri</div>
+                    <div class="day-name">sat</div>
+                    
+                </div>
+            </div>
+            @for (int week = 0; week < 5; week++)
             {
-                int day = i*7 + j;
-                Console.WriteLine(day);
-                if(@Model[day].didWorkout)
-                {
-                    <div class="day workout dropdown" data-did="true" data-date="@sixteenWeeksAgo.AddDays(day)">
-                        <div class="dropdown-content">
-                            <span class="type info">
-                                you worked out your: @Model[day].Type
-                            </span>
-                            <span class="start-time info">
-                                you started at: @Model[day].StartTime.ToString()
-                            </span>
-                            <span class="duration info" data-duration="@Model[day].DurationMintues">
-                                it took you @Model[day].DurationMintues minutes to Finish!
-                            </span>
-                        </div>
-                    </div>
-                }
-                else
-                {
-                    <div class="day workout dropdown" data-did="false" data-date="@sixteenWeeksAgo.AddDays(day)">
+                <div class="week">
+                    @{int k =0;}
+                    @for (int day = 0; day < 7; day++)
+                    {
+                        
+                        if (week == 0 && k < (int)lastFourMonths.DayOfWeek)
+                        {
+                            <div class="day workout dropdown" data-did="false" style="background-color: grey;" data-date="">
+                            </div>
+                            k++;
+                            continue;
+                        }
+                        if(@Model[proccessedDays].didWorkout)
+                        {
+                            <div class="day workout dropdown" data-did="true">
+                                <div class="dropdown-content">
+                                    <div class="dropdown-content">
+                                        <div class="type info">
+                                            you worked out your: @Model[proccessedDays].Type
+                                        </div>
+                                        <div class="start-time info">
+                                            you started at: @Model[proccessedDays].StartTime.ToString()
+                                        </div>
+                                        <div class="duration info" data-duration="@Model[proccessedDays].DurationMintues">
+                                            it took you @Model[proccessedDays].DurationMintues minutes to Finish!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="day workout dropdown" data-did="false">
 
-                    </div>
-                }
-                
+                            </div>
+                        }
+                        proccessedDays++;
+                        thisMonthsProccessed++;
+                        if(thisMonthsProccessed == daysOfMonth)
+                        {
+                            break;
+                        }
+                    }
+                </div>
             }
         </div>
     }
