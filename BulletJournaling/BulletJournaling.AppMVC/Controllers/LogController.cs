@@ -25,7 +25,7 @@ namespace BulletJournaling.AppMVC.Controllers
                 DateOnly lastFourMonths = new(fourMonthsAgo.Year, fourMonthsAgo.Month, 1);
                 for (int j = 0; j < DateTime.DaysInMonth(lastFourMonths.Year, lastFourMonths.Month); j++)
                 {
-                    if(false)
+                    if(j % 8 == 0)
                     {
                         _logs?.Add(new DayLogModel 
                         { 

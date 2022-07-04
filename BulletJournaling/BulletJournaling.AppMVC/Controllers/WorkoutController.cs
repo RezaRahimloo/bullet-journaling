@@ -7,7 +7,7 @@ namespace BulletJournaling.AppMVC.Controllers
 {
     public class WorkoutController : Controller
     {
-        private List<WorkoutModel>? _workouts;
+        private List<WorkoutModel> _workouts;
         public WorkoutController(WorkoutProvider workoutProvider)
         {
             _workouts = workoutProvider.GetWorkouts();

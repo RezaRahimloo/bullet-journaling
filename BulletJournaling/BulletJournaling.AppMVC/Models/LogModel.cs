@@ -6,7 +6,7 @@ namespace BulletJournaling.AppMVC.Models
     {
         [Required]
         public string Title { get; set; }
-        public string? Description { get; set; }
+        public string Description { get; set; }
         public int DurationMinutes { get; set; }
     }
 }

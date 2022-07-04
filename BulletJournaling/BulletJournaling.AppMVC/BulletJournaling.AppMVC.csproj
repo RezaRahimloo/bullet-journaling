@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <!-- <Nullable>enable</Nullable> -->
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-BulletJournaling.AppMVC-4D8508E6-AD01-4B26-A5BA-CBBC302C346D</UserSecretsId>
   </PropertyGroup>

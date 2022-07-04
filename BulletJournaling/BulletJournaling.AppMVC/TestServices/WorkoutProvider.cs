@@ -3,7 +3,7 @@ using BulletJournaling.AppMVC.Models;
 namespace TestServices;
 public class WorkoutProvider
 {
-    private List<WorkoutModel>? _workouts = new List<WorkoutModel>();
+    private List<WorkoutModel> _workouts = new List<WorkoutModel>();
 
     public List<WorkoutModel> GetWorkouts()
     {
