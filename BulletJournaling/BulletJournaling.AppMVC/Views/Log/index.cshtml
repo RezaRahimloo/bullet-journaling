@@ -97,7 +97,12 @@
         </div>
     }
 </div>
-<partial name="_AddTodayPartial" />
+<partial name="_AddTodayPartial" model = "new LogModel
+    {
+        Title = string.Empty,
+        Description = string.Empty,
+        DurationMinutes = 0
+    }"/>
 <div id="day-activites">
 
 </div>

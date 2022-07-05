@@ -4,6 +4,35 @@ namespace TestServices;
 public class LogProvider
 {
     private List<DayLogModel> _dayLogs = new();
+    public List<DayLogModel> AddToday(LogModel log)
+    {
+        Console.WriteLine(_dayLogs.Count);
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+        DayLogModel todayLog = _dayLogs.FirstOrDefault(dayLog => dayLog.day == today);
+        Console.WriteLine(today.ToString());
+        Console.WriteLine(todayLog.day.ToString());
+        if(todayLog is not null)
+        {
+            todayLog.Logs.Add(log);
+        }
+        else
+        {
+            _dayLogs.Add(new DayLogModel
+            {
+                HasLog = true,
+                day = today,
+                Logs = new List<LogModel>
+                {
+                    new LogModel { Title = log.Title, Description = log.Description, DurationMinutes = log.DurationMinutes }
+                }
+            });
+        }
+        Console.WriteLine(_dayLogs.Count);
+        Console.WriteLine(log.Title);
+        Console.WriteLine(log.Description);
+        Console.WriteLine(log.DurationMinutes);
+        return _dayLogs;
+    }
     public List<DayLogModel> GetDayLogs()
     {
         if(_dayLogs.Count > 0)

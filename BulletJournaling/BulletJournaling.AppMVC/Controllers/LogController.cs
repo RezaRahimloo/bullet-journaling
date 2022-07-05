@@ -7,10 +7,13 @@ namespace BulletJournaling.AppMVC.Controllers
 {
     public class LogController : Controller
     {
-        private readonly List<DayLogModel> _logs = new();
-        public LogController()
+        private  List<DayLogModel> _logs = new();
+        private readonly LogProvider _logProvider;
+        public LogController(LogProvider logProvider)
         {
-            PopulateLogs();
+            _logProvider = logProvider;
+            _logs = _logProvider.GetDayLogs();
+            //PopulateLogs();
         }
         public IActionResult Index()
         {
@@ -19,7 +22,8 @@ namespace BulletJournaling.AppMVC.Controllers
         [HttpPost("AddToday")]
         public async Task<IActionResult> AddToday(LogModel model)
         {
-
+            _logs = _logProvider.AddToday(model);
+            return RedirectToAction("Index", "Log");
         }
         
         private void PopulateLogs()
