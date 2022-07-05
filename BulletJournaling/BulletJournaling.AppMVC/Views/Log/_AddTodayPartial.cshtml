@@ -3,32 +3,31 @@
 
 
 
+<button id="add-log">Add Today's work!</button>
 
-
-<div>
     <form id="add-log-form" asp-controller="Log" asp-action="AddToday">
         <div asp-validation-summary="ModelOnly" class="property-errors"></div>
         <div class="property-wrapper">
             <label asp-for="Title" class="property-label"></label>
-            <div>
+            <div class="input-wrapper">
                 <input asp-for="Title" placeholder="Title" class="property-input">
                 <span asp-validation-for="Title" class="property-errors"></span>
             </div>
         </div>
         <div class="property-wrapper">
             <label asp-for="Description" class="property-label"></label>
-            <div>
-                <input asp-for="Description" placeholder="Description" class="property-input">
+            <div class="input-wrapper">
+                <textarea asp-for="Description" placeholder="Description" class="property-input"></textarea>
                 <span asp-validation-for="Description" class="property-errors"></span>
             </div>
         </div>
         <div class="property-wrapper">
             <label asp-for="DurationMinutes" class="property-label"></label>
-            <div>
+            <div class="input-wrapper">
                 <input asp-for="DurationMinutes" placeholder="Duration (Minutes)" class="property-input">
                 <span asp-validation-for="DurationMinutes" class="property-errors"></span>
             </div>
         </div>
-        <button type="submit">Add Log for today!</button>
+        <button class="form-submit" type="submit">Add</button>
     </form>
-</div>
+<div class="grey-shade-form"></div>

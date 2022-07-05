@@ -3,6 +3,17 @@ main{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    background-color: #f3f3f3;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 /* #log-calender{
     display: grid;
@@ -124,6 +135,96 @@ main{
     padding: 10px;
     margin-top: 10px;
     
+}
+button#add-log{
+    margin-top: 40px;
+    padding: 10px 30px;
+    background-color: rgb(73, 95, 138);
+    color: azure;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    font-size: large;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+    cursor: pointer;
+}
+form#add-log-form{
+    z-index: 2;
+    position: absolute;
+    top: -600px;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(170, 174, 192);
+    padding: 30px;
+    width: 90vw;
+    height: 80vh;
+    max-width: 500px;
+    max-height: 500px;
+    border-radius: 12px;
+    font-size: large;
+    transition: top 0.7s;
+
+}
+form#add-log-form.open{
+    top: 50vh;
+}
+.property-wrapper{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.property-label{
+    margin-bottom: 10px;
+}
+.input-wrapper{
+    width: 100%;
+    
+}
+.property-input{
+    height: 40px;
+    width: 160%;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-size: large;
+    padding-left: 10px;
+}
+#Description{
+    height: 100px;
+    width: 220%;
+}
+#DurationMinutes{
+    width: 70px;
+    
+}
+button.form-submit{
+    margin-top: 30px;
+    align-self: center;
+    padding: 10px 30px;
+    background-color: rgb(73, 95, 138);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    color: azure;
+}
+.grey-shade-form{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+.grey-shade-form.active{
+    display: block;
 }
 @media (max-width: 600px){
     #log-calender{
