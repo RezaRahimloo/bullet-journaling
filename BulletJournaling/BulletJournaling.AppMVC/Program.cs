@@ -17,7 +17,8 @@ builder.Services.AddControllersWithViews();
 
 //Custom service
 builder.Services.AddSingleton<WorkoutProvider>();
-builder.Services.AddTransient<SmokesProvider>();
+builder.Services.AddSingleton<SmokesProvider>();
+builder.Services.AddSingleton<LogProvider>();
 
 
 var app = builder.Build();

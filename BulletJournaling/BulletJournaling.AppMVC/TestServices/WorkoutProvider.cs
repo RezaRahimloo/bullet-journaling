@@ -7,6 +7,10 @@ public class WorkoutProvider
 
     public List<WorkoutModel> GetWorkouts()
     {
+        if(_workouts.Count > 0)
+        {
+            return _workouts;
+        }
         for (int i = -3; i < 1; i++)
         {
             DateOnly fourMonthsAgo = DateOnly.FromDateTime(DateTime.Now).AddMonths(i);

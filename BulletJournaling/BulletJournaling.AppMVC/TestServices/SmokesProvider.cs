@@ -6,6 +6,10 @@ public class SmokesProvider
     private List<SmokingModel> _smokings = new();
     public List<SmokingModel> GetSmokings()
     {
+        if(_smokings.Count > 0)
+        {
+            return _smokings;
+        }
         for (int i = -3; i < 1; i++)
         {
             DateOnly fourMonthsAgo = DateOnly.FromDateTime(DateTime.Now).AddMonths(i);

@@ -16,6 +16,12 @@ namespace BulletJournaling.AppMVC.Controllers
         {
             return View(_logs);
         }
+        [HttpPost("AddToday")]
+        public async Task<IActionResult> AddToday(LogModel model)
+        {
+
+        }
+        
         private void PopulateLogs()
         {
             
