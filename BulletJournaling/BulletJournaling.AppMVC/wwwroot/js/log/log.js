@@ -1,6 +1,6 @@
 let mainActivitiesShow = document.getElementById("day-activites");
 let openFormButton = document.getElementById("add-log");
-let form = document.querySelector('form#add-log-form');
+let form = document.querySelector('#log-form-wrapper');
 let formGreyShade = document.querySelector('.grey-shade-form');
 document.querySelectorAll('div.day.log[data-did="true"]').forEach( element => {
     element.addEventListener('focus', e => focusedDay(e))

@@ -9,6 +9,7 @@
 }
 @section Scripts {
     <script src="~/js/log/log.js" asp-append-version="true"></script>
+    <script src="~/js/log/validation.js" asp-append-version="true"></script>
 }
 <div id="log-calender" class="calender">
     @for (int month = -3; month < 1; month++)
@@ -97,12 +98,16 @@
         </div>
     }
 </div>
-<partial name="_AddTodayPartial" model = "new LogModel
-    {
-        Title = string.Empty,
-        Description = string.Empty,
-        DurationMinutes = 0
-    }"/>
+<button id="add-log">Add Today's work!</button>
+<div id="log-form-wrapper">
+    <partial name="_AddTodayPartial" model = "new LogModel
+        {
+            Title = string.Empty,
+            Description = string.Empty,
+            DurationMinutes = 0
+        }"/>
+</div>
+<div class="grey-shade-form"></div>
 <div id="day-activites">
 
 </div>

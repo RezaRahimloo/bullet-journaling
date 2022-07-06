@@ -3,7 +3,7 @@
 
 
 
-<button id="add-log">Add Today's work!</button>
+
 
     <form id="add-log-form" asp-controller="Log" asp-action="AddToday">
         <div asp-validation-summary="ModelOnly" class="property-errors"></div>
@@ -28,6 +28,6 @@
                 <span asp-validation-for="DurationMinutes" class="property-errors"></span>
             </div>
         </div>
-        <button class="form-submit" type="submit">Add</button>
+        
     </form>
-<div class="grey-shade-form"></div>
+    <button id="addDayLog">Add</button>

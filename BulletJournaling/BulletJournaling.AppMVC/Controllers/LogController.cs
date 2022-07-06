@@ -1,4 +1,5 @@
 using BulletJournaling.AppMVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TestServices;
@@ -19,7 +20,9 @@ namespace BulletJournaling.AppMVC.Controllers
         {
             return View(_logs);
         }
+        //[AllowAnonymous]
         [HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> AddToday(LogModel model)
         {
             if(ModelState.IsValid)

@@ -148,7 +148,7 @@ button#add-log{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
     cursor: pointer;
 }
-form#add-log-form{
+#log-form-wrapper{
     z-index: 2;
     position: absolute;
     top: -600px;
@@ -157,8 +157,8 @@ form#add-log-form{
     width: max-content;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(170, 174, 192);
     padding: 30px;
     width: 90vw;
@@ -168,9 +168,18 @@ form#add-log-form{
     border-radius: 12px;
     font-size: large;
     transition: top 0.7s;
+}
+form#add-log-form{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
 
 }
-form#add-log-form.open{
+#log-form-wrapper.open{
     top: 50vh;
 }
 .property-wrapper{
@@ -183,9 +192,11 @@ form#add-log-form.open{
 }
 .input-wrapper{
     width: 100%;
-    
+    display: flex;
+    flex-direction: column;
 }
 .property-input{
+    max-width: 300px;
     height: 40px;
     width: 160%;
     outline: none;
@@ -193,6 +204,11 @@ form#add-log-form.open{
     border-radius: 10px;
     font-size: large;
     padding-left: 10px;
+    padding-top: 5px;
+}
+.property-errors{
+    color: rgb(230, 69, 69);
+    padding: 10px;
 }
 #Description{
     height: 100px;
