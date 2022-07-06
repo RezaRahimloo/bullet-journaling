@@ -4,6 +4,43 @@ namespace TestServices;
 public class SmokesProvider
 {
     private List<SmokingModel> _smokings = new();
+    public void AddOne()
+    {
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+        SmokingModel todaySmoking = _smokings.FirstOrDefault(day => day.Date == today);
+        if(todaySmoking is not null)
+        {
+            todaySmoking.Number++;
+        }
+        else
+        {
+            todaySmoking = new SmokingModel
+            {
+                DidSmoke = true,
+                Date = today,
+                Number = 1
+            };
+        }
+    }
+    public List<SmokingModel> AddToday(SmokingModel smoking)
+    {
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+        SmokingModel todaySmoking = _smokings.FirstOrDefault(day => day.Date == today);
+        if(todaySmoking is not null)
+        {
+            todaySmoking = new SmokingModel
+            {
+                DidSmoke = smoking.DidSmoke,
+                Date = smoking.Date,
+                Number = smoking.Number
+            };
+        }
+        else
+        {
+            _smokings.Add(smoking);
+        }
+        return _smokings;
+    }
     public List<SmokingModel> GetSmokings()
     {
         if(_smokings.Count > 0)
@@ -20,7 +57,9 @@ public class SmokesProvider
                 {
                     _smokings?.Add(new SmokingModel 
                     { 
-                        DidSmoke = false
+                        DidSmoke = false,
+                        Number = 0,
+                        Date = lastFourMonths.AddDays(j)
                     });
                 }
                 else
@@ -28,7 +67,8 @@ public class SmokesProvider
                     _smokings?.Add(new SmokingModel
                     {
                         DidSmoke = true,
-                        Number = new Random().Next(1, 13)
+                        Number = new Random().Next(1, 13),
+                        Date = lastFourMonths.AddDays(j)
                     });
                 }
             }

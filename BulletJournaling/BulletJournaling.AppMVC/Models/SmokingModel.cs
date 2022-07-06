@@ -7,5 +7,6 @@ namespace BulletJournaling.AppMVC.Models
         [Required]
         public bool DidSmoke { get; set; }
         public int Number { get; set; } = 0;
+        public DateOnly Date { get; set; } 
     }
 }
