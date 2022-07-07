@@ -8,11 +8,22 @@
 <form id="add-smokes-form" asp-controller="Smoking" asp-action="AddToday">
     <div asp-validation-summary="ModelOnly" class="property-errors"></div>
     <div class="property-wrapper">
+        <label asp-for="DidSmoke" class="property-label"></label>
+        <div class="input-wrapper">
+            <div>
+                <span id="yes-smoke">yes</span><input asp-for="DidSmoke" class="property-input">
+            </div>
+            <span asp-validation-for="Number" class="property-errors"></span>
+        </div>
+    </div>
+    <div class="property-wrapper">
         <label asp-for="Number" class="property-label"></label>
         <div class="input-wrapper">
             <input asp-for="Number" placeholder="Number" class="property-input">
             <span asp-validation-for="Number" class="property-errors"></span>
         </div>
     </div>
+    <input asp-for="Date" hidden class="property-input" value="@DateOnly.FromDateTime(DateTime.Now)">
+    
 </form>
 <button id="addDayLog">Add</button>
