@@ -1,0 +1,18 @@
+
+@model SmokingModel;
+
+
+
+
+
+<form id="add-smokes-form" asp-controller="Smoking" asp-action="AddToday">
+    <div asp-validation-summary="ModelOnly" class="property-errors"></div>
+    <div class="property-wrapper">
+        <label asp-for="Number" class="property-label"></label>
+        <div class="input-wrapper">
+            <input asp-for="Number" placeholder="Number" class="property-input">
+            <span asp-validation-for="Number" class="property-errors"></span>
+        </div>
+    </div>
+</form>
+<button id="addDayLog">Add</button>

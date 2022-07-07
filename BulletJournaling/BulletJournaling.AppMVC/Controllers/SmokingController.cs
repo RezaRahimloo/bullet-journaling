@@ -8,15 +8,32 @@ namespace BulletJournaling.AppMVC.Controllers
     public class SmokingController : Controller
     {
         private readonly List<SmokingModel> _smokings;
+        private SmokesProvider _smokeProvider;
         public SmokingController(SmokesProvider smokesProvider)
         {
+            _smokeProvider = smokesProvider;
             _smokings = smokesProvider.GetSmokings();
         }
         public IActionResult Index()
         {
             return View(_smokings);
         }
-
+        [HttpPost]
+        public async Task<IActionResult> AddCigarretsToToday(SmokingModel smoking)
+        {
+            if(ModelState.IsValid)
+            {
+                _smokeProvider.AddToday(smoking);
+                return RedirectToAction("Index", "Smoking");
+            }
+            return PartialView("_AddTodayPartial", smoking);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddACigar()
+        {
+            _smokeProvider.AddOne();
+            return RedirectToAction("Index", "Smoking");
+        }
        
     }
 }
