@@ -1,3 +1,14 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 main{
     display: flex;
     justify-content: center;
@@ -82,7 +93,71 @@ main{
     align-items: center;
     overflow: visible;
 }
+#AddSmokingWrapper{
+    width: 100vw;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#add-smokes-form{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.property-wrapper{
+    display: flex;
+    align-items: center;
+    
+    margin: 10px 0;
+    min-width: 200px;
+    font-size: large;
+}
+.input-wrapper{
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input{
+    border: none;
+    outline: none;
+    margin-left: 10px;
+}
+#yes-text{
+    transform: translate(0,-6%);
+    margin-left: 5px;
+}
+#yes-wrapper{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
 
+input[type="number"]{
+    width: 40px;
+    border-radius: 6px;
+    padding: 2px;
+    border: 1px solid black;
+}
+#saveCigars{
+    justify-self: center;
+    align-self: center;
+    background-color: rgb(56, 56, 56);
+    color: azure;
+    padding: 10px 30px;
+    margin-top: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
 @media (max-width: 600px){
     #smoking-calender{
         flex-direction: column;

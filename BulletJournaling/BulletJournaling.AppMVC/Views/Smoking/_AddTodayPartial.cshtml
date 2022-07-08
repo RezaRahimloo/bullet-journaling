@@ -10,10 +10,10 @@
     <div class="property-wrapper">
         <label asp-for="DidSmoke" class="property-label"></label>
         <div class="input-wrapper">
-            <div>
-                <span id="yes-smoke">yes</span><input asp-for="DidSmoke" class="property-input">
+            <div id="yes-wrapper">
+                <input asp-for="DidSmoke" class="property-input"><span id="yes-text">yes</span>
             </div>
-            <span asp-validation-for="Number" class="property-errors"></span>
+            <span asp-validation-for="DidSmoke" class="property-errors"></span>
         </div>
     </div>
     <div class="property-wrapper">
@@ -24,6 +24,6 @@
         </div>
     </div>
     <input asp-for="Date" hidden class="property-input" value="@DateOnly.FromDateTime(DateTime.Now)">
-    
+    <div id="saveCigars">Save</div>
 </form>
-<button id="addDayLog">Add</button>
+
