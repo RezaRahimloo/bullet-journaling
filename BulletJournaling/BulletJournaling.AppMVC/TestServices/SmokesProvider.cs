@@ -55,7 +55,7 @@ public class SmokesProvider
             {
                 if(j%4 == 0)
                 {
-                    _smokings?.Add(new SmokingModel 
+                    _smokings.Add(new SmokingModel 
                     { 
                         DidSmoke = false,
                         Number = 0,
@@ -64,7 +64,7 @@ public class SmokesProvider
                 }
                 else
                 {
-                    _smokings?.Add(new SmokingModel
+                    _smokings.Add(new SmokingModel
                     {
                         DidSmoke = true,
                         Number = new Random().Next(1, 13),

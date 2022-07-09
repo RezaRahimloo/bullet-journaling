@@ -9,3 +9,4 @@
 *.props
 BulletJournaling/BulletJournaling.AppMVC/bin/Debug/net6.0/BulletJournaling.AppMVC.pdb
 *.pdb
+*.pdb
