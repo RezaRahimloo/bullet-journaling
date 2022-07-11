@@ -6,7 +6,6 @@ public class LogProvider
     private List<DayLogModel> _dayLogs = new();
     public List<DayLogModel> AddToday(LogModel log)
     {
-        Console.WriteLine(_dayLogs.Count);
         DateOnly today = DateOnly.FromDateTime(DateTime.Now);
         DayLogModel todayLog = _dayLogs.FirstOrDefault(dayLog => dayLog.day == today);
         Console.WriteLine(today.ToString());
