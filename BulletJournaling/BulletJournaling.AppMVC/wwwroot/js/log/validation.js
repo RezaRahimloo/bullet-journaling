@@ -8,7 +8,7 @@ $(function () {
         //alert(antiForgeryToken);
 
         let title = $("#add-log-form input[name = 'Title']").val();
-        let description = $("#add-log-form input[name = 'Description']").val();
+        let description = $("#add-log-form textarea[name = 'Description']").val();
         let durationMinutes = $("#add-log-form input[name = 'DurationMinutes']").val();
 
         let userInput = {
