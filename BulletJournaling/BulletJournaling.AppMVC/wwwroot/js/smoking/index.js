@@ -3,7 +3,6 @@ let smokeDays = document.querySelectorAll('.day.smoking');
 
 smokeDays.forEach(day => {
     let cigarretsToday = Number(day.dataset.number);
-    console.log(day, cigarretsToday);
     if(cigarretsToday > 10){
         day.classList.add(smokingLevels[4]);
     } else if(cigarretsToday > 8){

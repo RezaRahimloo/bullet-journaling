@@ -28,18 +28,27 @@ public class SmokesProvider
         SmokingModel todaySmoking = _smokings.FirstOrDefault(day => day.Date == today);
         if(todaySmoking is not null)
         {
-            todaySmoking = new SmokingModel
-            {
-                DidSmoke = smoking.DidSmoke,
-                Date = smoking.Date,
-                Number = smoking.Number
-            };
+            todaySmoking.DidSmoke = smoking.DidSmoke;
+            todaySmoking.Number = smoking.Number;
+            // todaySmoking = new SmokingModel
+            // {
+            //     DidSmoke = smoking.DidSmoke,
+            //     Date = smoking.Date,
+            //     Number = smoking.Number
+            // };
         }
         else
         {
             _smokings.Add(smoking);
         }
         return _smokings;
+    }
+    public void DeleteToday()
+    {
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+        SmokingModel todaySmoking = _smokings.FirstOrDefault(day => day.Date == today);
+        todaySmoking.DidSmoke = false;
+        todaySmoking.Number = 0;
     }
     public List<SmokingModel> GetSmokings()
     {

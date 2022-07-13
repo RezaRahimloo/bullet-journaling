@@ -18,7 +18,7 @@ namespace BulletJournaling.AppMVC.Controllers
             return View(_smokeProvider.GetSmokings());
         }
         [HttpPost]
-        public async Task<IActionResult> AddCigarretsToToday(SmokingModel smoking)
+        public async Task<IActionResult> AddToday(SmokingModel smoking)
         {
             if(ModelState.IsValid)
             {
