@@ -1,19 +1,18 @@
-let mainActivitiesShow = document.getElementById("day-activites");
-let openFormButton = document.getElementById("add-log");
-let form = document.querySelector('#log-form-wrapper');
-let formGreyShade = document.querySelector('.grey-shade-form');
-document.querySelectorAll('div.day.log[data-did="true"]').forEach( element => {
-    element.addEventListener('focus', e => focusedDay(e))
+const smokingLevels = ["low", "medium-l", "medium-h", "h", "cronic"]
+let smokeDays = document.querySelectorAll('.day.smoking');
+
+smokeDays.forEach(day => {
+    let cigarretsToday = Number(day.dataset.number);
+    console.log(day, cigarretsToday);
+    if(cigarretsToday > 10){
+        day.classList.add(smokingLevels[4]);
+    } else if(cigarretsToday > 8){
+        day.classList.add(smokingLevels[3]);
+    } else if(cigarretsToday > 5){
+        day.classList.add(smokingLevels[2]);
+    } else if(cigarretsToday > 2){
+        day.classList.add(smokingLevels[1]);
+    } else if(cigarretsToday > 0){
+        day.classList.add(smokingLevels[0]);
+    }
 })
-openFormButton.addEventListener('click', () => {
-    form.classList.toggle("open");
-    formGreyShade.classList.toggle("active");
-})
-formGreyShade.addEventListener('click', () => {
-    formGreyShade.classList.toggle("active");
-    form.classList.remove("open");
-})
-function focusedDay(event){
-    let elm = event.target;
-    mainActivitiesShow.innerHTML = elm.children[1].innerHTML;
-}

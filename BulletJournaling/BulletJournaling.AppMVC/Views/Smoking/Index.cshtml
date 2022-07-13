@@ -33,7 +33,7 @@
                     
                 </div>
             </div>
-            @for (int week = 0; week < 5; week++)
+            @for (int week = 0; week < 6; week++)
             {
                 <div class="week">
                     @{int k =0;}
@@ -42,17 +42,21 @@
                         
                         if (week == 0 && k < (int)lastFourMonths.DayOfWeek)
                         {
-                            <div class="day smoking dropdown" data-did="false" style="background-color: grey;" data-date="">
+                            <div class="day smoking dropdown" data-did="false" style="background-color: azure;">
                             </div>
                             k++;
                             continue;
                         }
+                        if(week == 5 && thisMonthsProccessed == daysOfMonth)
+                        {
+                            continue;
+                        }
                         if(@Model[proccessedDays].DidSmoke)
                         {
-                            <div class="day smoking dropdown" data-did="true">
+                            <div class="day smoking dropdown" data-did="true" data-number="@Model[proccessedDays].Number">
                                 <div class="dropdown-content">
                                     <div class="dropdown-content">
-                                        <span class="number info" data-number="@Model[day].Number">
+                                        <span class="number info">
                                             @Model[proccessedDays].Number cigarrets!
                                         </span>
                                     </div>
