@@ -27,10 +27,16 @@ namespace BulletJournaling.AppMVC.Controllers
             }
             return PartialView("_AddTodayPartial", smoking);
         }
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> AddACigar()
         {
             _smokeProvider.AddOne();
+            return RedirectToAction("Index", "Smoking");
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteToday()
+        {
+            _smokeProvider.DeleteToday();
             return RedirectToAction("Index", "Smoking");
         }
        

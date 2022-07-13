@@ -52,9 +52,14 @@
                         {
                             continue;
                         }
-                        if(@Model[proccessedDays].DidSmoke)
+                        @* if(@Model[proccessedDays].DidSmoke) *@
+                        if(true)
                         {
                             <div class="day smoking dropdown" data-did="true" data-number="@Model[proccessedDays].Number">
+                                @if(Model[proccessedDays].Number > 19)
+                                {
+                                    <img class="skull" src="~/svgs/skull.svg" alt="Marg">
+                                }
                                 <div class="dropdown-content">
                                     <div class="dropdown-content">
                                         <span class="number info">
@@ -90,5 +95,9 @@
         Number = 0    
     }">
 </div>
-<div class="grey-shade-form"></div>
+<div id="smoking-actions">
+    <button id="delete" class="smokeAction">Delete Today's Insertion</button>
+    <button id="plus1" class="smokeAction">+1 cigarrete</button>
+</div>
+
 <h2>you Smoked @Model?.Sum(s => s.Number) ciggarets in the last 4 Months!</h2>

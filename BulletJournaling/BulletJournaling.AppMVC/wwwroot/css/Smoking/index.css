@@ -43,6 +43,12 @@ main{
 .day.smoking.cronic{
     background-color: #000000;
 }
+.day.packPlus{
+    background-color: #000000;
+}
+.skull{
+    width: 90%;
+}
 .dropdown {
     position: relative;
     display: inline-block;
@@ -51,6 +57,9 @@ main{
     margin: 3px;
     background-color: rgb(80, 218, 99);
     border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .dropdown-content {
@@ -166,6 +175,30 @@ input[type="number"]{
     margin-top: 10px;
     border-radius: 10px;
     cursor: pointer;
+}
+#smoking-actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90vw;
+    max-width: 420px;
+    padding: 20px;
+}
+.smokeAction{
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 108%;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    color: azure;
+    cursor: pointer;
+}
+#delete{
+    background-color: rgb(196, 11, 11);
+}
+#plus1{
+    background-color: #2e2e2e;
 }
 @media (max-width: 600px){
     #smoking-calender{

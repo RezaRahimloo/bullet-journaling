@@ -1,7 +1,9 @@
 $(function () {
-    let userLoginButton = $("div#saveCigars").click(onUserLoginClick);
+    let saveCigars = $("div#saveCigars").click(onUserSaveClick);
+    let deleteToday = $("#delete").click(onUserDeleteClick);
+    let userLoginButton = $("#plus1").click(onUserAddOneClick);
 
-    function onUserLoginClick() {
+    function onUserSaveClick() {
         let url = "/smoking/AddToday";
         //input[name = '__RequestVerificationToken'] this is a hidden input field that's automaticaly added by mvc
         //let antiForgeryToken = $("#UserLoginModal input[name = '__RequestVerificationToken']").val();
@@ -31,7 +33,7 @@ $(function () {
                 if (hasErrors) {
                     $("#log-form-wrapper").html(data);
 
-                    userLoginButton = $("button#addDayLog").click(onUserLoginClick);
+                    saveCigars = $("div#saveCigars").click(onUserSaveClick);
                     //we must wire up the click event again for the case  when the login dialog is rendered to the screen
                     //through the asynchronous process after a failed login attempt
                 } else {
@@ -45,5 +47,27 @@ $(function () {
                 console.error(thrownError + "\r\n" + xhr.statusCode + "\r\n" + xhr.responseText);
             }
         });
+    }
+
+    function onUserDeleteClick(){
+        let url = "/smoking/DeleteToday";
+        $.ajax({
+            type: "DELETE",
+            url: url,
+            success: () => {
+                location.href = "/smoking/Index";
+            }
+        })
+    }
+
+    function onUserAddOneClick(){
+        let url = "/smoking/AddACigar";
+        $.ajax({
+            type: "PUT",
+            url: url,
+            success: () => {
+                location.href = "/smoking/Index";
+            }
+        })
     }
 });
