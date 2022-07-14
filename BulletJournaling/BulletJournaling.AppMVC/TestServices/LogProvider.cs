@@ -8,10 +8,10 @@ public class LogProvider
     {
         DateOnly today = DateOnly.FromDateTime(DateTime.Now);
         DayLogModel todayLog = _dayLogs.FirstOrDefault(dayLog => dayLog.day == today);
-        Console.WriteLine(today.ToString());
-        Console.WriteLine(todayLog.day.ToString());
         if(todayLog is not null)
         {
+            var logs = todayLog.Logs;
+            log.Id = logs[logs.Count - 1].Id + 1;
             todayLog.Logs.Add(log);
         }
         else
@@ -22,15 +22,32 @@ public class LogProvider
                 day = today,
                 Logs = new List<LogModel>
                 {
-                    new LogModel { Title = log.Title, Description = log.Description, DurationMinutes = log.DurationMinutes }
+                    new LogModel 
+                    {
+                        Id=0, 
+                        Title = log.Title, 
+                        Description = log.Description, 
+                        DurationMinutes = log.DurationMinutes 
+                    }
                 }
             });
         }
-        Console.WriteLine(_dayLogs.Count);
-        Console.WriteLine(log.Title);
-        Console.WriteLine(log.Description);
-        Console.WriteLine(log.DurationMinutes);
         return _dayLogs;
+    }
+    public bool DeleteLog(int logId)
+    {
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+        DayLogModel todayLog = _dayLogs.FirstOrDefault(dayLog => dayLog.day == today);
+        if(todayLog != null)
+        {
+            var deletingLog = todayLog.Logs.FirstOrDefault(log => log.Id == logId);
+            if(deletingLog != null)
+            {
+                todayLog.Logs.Remove(deletingLog);
+                return true;
+            }
+        }
+        return false;
     }
     public List<DayLogModel> GetDayLogs()
     {
@@ -56,12 +73,14 @@ public class LogProvider
                     List<LogModel> logs = new();
                     logs.Add(new LogModel
                     {
+                        Id = 0,
                         Title = "Learend DI",
                         Description = "Did sadskajsajdlksajdsa askl jdlaskj slak jals jaslj skadjals jds jask jaslkdj aslj sald jaskdj asdj sakj lasj sakjdsak jksaj kas k jdasj ash asj lasj lsaj lksaj lasj lkasj lasj saj dj j as hidushf isudh suidhfsd hfsdi hisd fhiudch fiu sdhsdihf dihfiudh iudjh i h hdi hfd  hidh fid hiu hsihdf hidf hilfdh udf fhiud idf hiudf hil sfiug fiu hdfgif hfd hidf hiu hifdif gifh gfi hfui this and that",
                         DurationMinutes = new Random().Next(1, 12)
                     });
                     logs.Add(new LogModel
                     {
+                        Id = 1,
                         Title = "Learend CI/CD",
                         Description = "Did this and that",
                         DurationMinutes = new Random().Next(1, 12)
