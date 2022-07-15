@@ -36,16 +36,30 @@ public class LogProvider
     }
     public bool DeleteLog(int logId)
     {
+        Console.WriteLine($"in ID:{logId}");
         DateOnly today = DateOnly.FromDateTime(DateTime.Now);
         DayLogModel todayLog = _dayLogs.FirstOrDefault(dayLog => dayLog.day == today);
         if(todayLog != null)
         {
-            var deletingLog = todayLog.Logs.FirstOrDefault(log => log.Id == logId);
-            if(deletingLog != null)
+            int deletingLog = todayLog.Logs.FindIndex(log => log.Id == logId);
+            Console.WriteLine("today log not null");
+            foreach(var log in todayLog.Logs)
             {
-                todayLog.Logs.Remove(deletingLog);
+                Console.Write("-log:  ");
+                Console.WriteLine($"{log.Id}-{log.Title}-{log.Description}");
+            }
+            if(deletingLog > -1)
+            {
+                Console.WriteLine("log not null");
+                todayLog.Logs.RemoveAt(deletingLog);
+                foreach(var log in todayLog.Logs)
+                {
+                Console.Write("-log:  ");
+                Console.WriteLine($"{log.Id}-{log.Title}-{log.Description}");
+                }
                 return true;
             }
+            Console.WriteLine(deletingLog);
         }
         return false;
     }

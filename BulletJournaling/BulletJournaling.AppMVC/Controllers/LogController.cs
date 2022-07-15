@@ -29,7 +29,7 @@ namespace BulletJournaling.AppMVC.Controllers
             }
             return PartialView("_AddTodayPartial", model);
         }
-        [HttpDelete]
+        [HttpPost]
         public async Task<IActionResult> DeleteLog(int logId)
         {
             if(_logProvider.DeleteLog(logId))
