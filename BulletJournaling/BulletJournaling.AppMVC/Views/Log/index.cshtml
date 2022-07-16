@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Log";
     int proccessedDays = 0;
+    DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+    DayLogModel todayLog = Model.FirstOrDefault(dayLog => dayLog.day == today);
 }
 
 @section Styles {
@@ -78,7 +80,11 @@
                                             <div class="log-info">
                                                 @log.Description
                                             </div>
-                                            <span class="delete" data-id="@log.Id" onclick="deleteLog(this)">delete</span>
+                                            @if(Model[proccessedDays].day == today)
+                                            {
+                                                <span class="delete" data-id="@log.Id" onclick="deleteLog(this)">delete</span>
+                                            }
+                                            
                                         </div>
                                         
                                     }

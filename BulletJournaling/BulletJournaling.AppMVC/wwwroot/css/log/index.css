@@ -228,7 +228,7 @@ form#add-log-form{
     width: 70px;
     
 }
-button.form-submit{
+button#addDayLog{
     margin-top: 30px;
     align-self: center;
     padding: 10px 30px;
