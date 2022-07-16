@@ -78,7 +78,18 @@ main{
     align-items: center;
     overflow: visible;
 }
-
+button#addToday{
+    margin-top: 40px;
+    padding: 10px 30px;
+    background-color: rgb(73, 95, 138);
+    color: azure;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    font-size: large;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+    cursor: pointer;
+}
 @media (max-width: 600px){
     #workout-calender{
         flex-direction: column;

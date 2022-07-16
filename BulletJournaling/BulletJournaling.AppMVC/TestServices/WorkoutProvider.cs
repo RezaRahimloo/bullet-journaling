@@ -29,10 +29,6 @@ public class WorkoutProvider
                     _workouts?.Add(new WorkoutModel
                     {
                         didWorkout = true,
-                        StartTime = lastFourMonths.AddDays(j).ToDateTime(new TimeOnly(
-                            hour: 4,
-                            minute: 30
-                        )),
                         Type = "Murder",
                         DurationMintues = 666
                     });

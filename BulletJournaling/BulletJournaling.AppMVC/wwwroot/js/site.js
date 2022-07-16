@@ -14,6 +14,5 @@ function closeNav() {
 document.getElementById("grey-shade").addEventListener('click', e=> {
     closeNav();
     greyShade.style.display = "none";
-    
 });
 console.log("murder")

@@ -61,9 +61,6 @@
                                         <div class="type info">
                                             you worked out your: @Model[proccessedDays].Type
                                         </div>
-                                        <div class="start-time info">
-                                            you started at: @Model[proccessedDays].StartTime.ToString()
-                                        </div>
                                         <div class="duration info" data-duration="@Model[proccessedDays].DurationMintues">
                                             it took you @Model[proccessedDays].DurationMintues minutes to Finish!
                                         </div>
@@ -89,3 +86,10 @@
         </div>
     }
 </div>
+<button id="addToday">Add today's workout</button>
+<partial name="_AddTodayPartial" model = "new WorkoutModel
+    {
+        didWorkout = false,
+        Type = string.Empty,
+        DurationMintues = 0
+    }"/>

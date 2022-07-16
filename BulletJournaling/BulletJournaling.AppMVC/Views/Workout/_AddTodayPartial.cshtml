@@ -1,0 +1,26 @@
+
+@model WorkoutModel;
+
+
+
+
+
+    <form id="add-log-form" asp-controller="Log" asp-action="AddToday">
+        <div asp-validation-summary="ModelOnly" class="property-errors"></div>
+        <div class="property-wrapper">
+            <label asp-for="Type" class="property-label"></label>
+            <div class="input-wrapper">
+                <input asp-for="Type" placeholder="Type" class="property-input">
+                <span asp-validation-for="Type" class="property-errors"></span>
+            </div>
+        </div>
+        <div class="property-wrapper">
+            <label asp-for="DurationMintues" class="property-label"></label>
+            <div class="input-wrapper">
+                <input asp-for="DurationMintues" placeholder="Duration (Minutes)" class="property-input">
+                <span asp-validation-for="DurationMintues" class="property-errors"></span>
+            </div>
+        </div>
+        
+    </form>
+    <button id="addDayWorkout">Add</button>
