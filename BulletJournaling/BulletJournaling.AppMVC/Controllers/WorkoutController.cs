@@ -14,7 +14,6 @@ namespace BulletJournaling.AppMVC.Controllers
         }
         public IActionResult Index()
         {
-            
             return View(_workouts);
         }
         

@@ -25,6 +25,7 @@ main{
     margin: 3px;
     background-color: rgb(236, 236, 236);
     border-radius: 6px;
+    
 }
 .dropdown[data-did="true"]{
     background-color: rgb(60, 194, 78);
@@ -37,7 +38,7 @@ main{
     width: max-content;
     top: 20px;
     z-index: 1;
-    
+    padding: 10px;
 }
 .month{
     margin: 20px;

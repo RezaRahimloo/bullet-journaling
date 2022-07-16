@@ -57,13 +57,11 @@
                         {
                             <div class="day workout dropdown" data-did="true">
                                 <div class="dropdown-content">
-                                    <div class="dropdown-content">
-                                        <div class="type info">
-                                            you worked out your: @Model[proccessedDays].Type
-                                        </div>
-                                        <div class="duration info" data-duration="@Model[proccessedDays].DurationMintues">
-                                            it took you @Model[proccessedDays].DurationMintues minutes to Finish!
-                                        </div>
+                                    <div class="type info">
+                                        you worked out your: @Model[proccessedDays].Type
+                                    </div>
+                                    <div class="duration info" data-duration="@Model[proccessedDays].DurationMintues">
+                                        it took you @Model[proccessedDays].DurationMintues minutes to Finish!
                                     </div>
                                 </div>
                             </div>
@@ -87,9 +85,12 @@
     }
 </div>
 <button id="addToday">Add today's workout</button>
-<partial name="_AddTodayPartial" model = "new WorkoutModel
+<div id="log-form-wrapper">
+    <partial name="_AddTodayPartial" model = "new WorkoutModel
     {
         didWorkout = false,
         Type = string.Empty,
         DurationMintues = 0
     }"/>
+</div>
+<div class="grey-shade-form"></div>
