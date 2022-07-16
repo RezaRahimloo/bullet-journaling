@@ -35,7 +35,7 @@
                     
                 </div>
             </div>
-            @for (int week = 0; week < 5; week++)
+            @for (int week = 0; week < 6; week++)
             {
                 <div class="week">
                     @{int k =0;}
@@ -47,6 +47,10 @@
                             <div class="day workout dropdown" data-did="false" style="background-color: grey;" data-date="">
                             </div>
                             k++;
+                            continue;
+                        }
+                        if(week == 5 && thisMonthsProccessed == daysOfMonth)
+                        {
                             continue;
                         }
                         if(@Model[proccessedDays].didWorkout)
