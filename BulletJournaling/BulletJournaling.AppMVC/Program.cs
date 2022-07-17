@@ -19,7 +19,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<WorkoutProvider>();
 builder.Services.AddSingleton<SmokesProvider>();
 builder.Services.AddSingleton<LogProvider>();
-
+builder.Services.AddSingleton<MbaProvider>();
 
 var app = builder.Build();
 
