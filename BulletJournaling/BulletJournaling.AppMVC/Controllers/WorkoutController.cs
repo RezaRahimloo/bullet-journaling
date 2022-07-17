@@ -38,5 +38,14 @@ namespace BulletJournaling.AppMVC.Controllers
             Console.WriteLine("Problem");
             return PartialView("_AddTodayPartial", workout);
         }
+        [HttpDelete]
+        public async Task<IActionResult> ClearToday()
+        {
+            if(_workoutProvider.ClearToday())
+            {
+                return RedirectToAction("Index", "Workout");
+            }
+            else return BadRequest("today has no Data");
+        }
     }
 }

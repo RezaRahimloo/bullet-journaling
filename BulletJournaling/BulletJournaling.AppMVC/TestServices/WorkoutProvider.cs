@@ -28,7 +28,22 @@ public class WorkoutProvider
         }
         return true;
     }
-
+    public bool ClearToday()
+    {
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+        WorkoutModel todayWorkout = _workouts.FirstOrDefault(day => day.Date == today);
+        if(todayWorkout is null)
+        {
+            return false;
+        }
+        else
+        {
+            todayWorkout.didWorkout = false;
+            todayWorkout.DurationMintues = 0;
+            todayWorkout.Type = string.Empty;
+            return true;
+        }
+    }
     public List<WorkoutModel> GetWorkouts()
     {
         if(_workouts.Count > 0)

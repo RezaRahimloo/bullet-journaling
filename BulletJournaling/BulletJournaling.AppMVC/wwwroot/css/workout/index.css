@@ -91,6 +91,18 @@ button#addToday{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
     cursor: pointer;
 }
+button#clearToday{
+    margin-top: 20px;
+    padding: 10px 30px;
+    background-color: rgb(58, 58, 58);
+    color: rgb(224, 224, 224);
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    font-size: large;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+    cursor: pointer;
+}
 #log-form-wrapper{
     z-index: 2;
     position: absolute;
