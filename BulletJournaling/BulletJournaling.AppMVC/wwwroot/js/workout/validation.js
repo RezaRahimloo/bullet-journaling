@@ -1,18 +1,16 @@
 $(function () {
-    let userLoginButton = $("button#addDayLog").click(onUserLoginClick);
+    let userLoginButton = $("button#addDayWorkout").click(onUserLoginClick);
     function onUserLoginClick() {
-        let url = "/Log/AddToday";
+        let url = "/workout/AddToday";
         //input[name = '__RequestVerificationToken'] this is a hidden input field that's automaticaly added by mvc
         //let antiForgeryToken = $("#UserLoginModal input[name = '__RequestVerificationToken']").val();
         //alert(antiForgeryToken);
 
-        let title = $("#add-log-form input[name = 'Title']").val();
-        let description = $("#add-log-form textarea[name = 'Description']").val();
-        let durationMinutes = $("#add-log-form input[name = 'DurationMinutes']").val();
+        let type = $("#add-log-form input[name = 'Title']").val();
+        let durationMinutes = $("#add-log-form input[name = 'DurationMintues']").val();
 
         let userInput = {
-            Title: title,
-            Description: description,
+            Type: type,
             DurationMinutes: durationMinutes
         }
 
@@ -30,11 +28,11 @@ $(function () {
                 if (hasErrors) {
                     $("#log-form-wrapper").html(data);
 
-                    userLoginButton = $("button#addDayLog").click(onUserLoginClick);
+                    userLoginButton = $("button#addDayWorkout").click(onUserLoginClick);
                     //we must wire up the click event again for the case  when the login dialog is rendered to the screen
                     //through the asynchronous process after a failed login attempt
                 } else {
-                    location.href = "/log/Index";
+                    location.href = "/workout/Index";
                 }
             },
             error: (xhr, ajaxOptions, thrownError) => {

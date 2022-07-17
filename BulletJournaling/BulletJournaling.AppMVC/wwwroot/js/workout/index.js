@@ -1,4 +1,4 @@
-let openFormButton = document.getElementById("add-log");
+let openFormButton = document.getElementById("addToday");
 let form = document.querySelector('#log-form-wrapper');
 let formGreyShade = document.querySelector('.grey-shade-form');
 
