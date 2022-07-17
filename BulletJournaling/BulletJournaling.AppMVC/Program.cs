@@ -15,7 +15,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-//Custom service
+//Custom services
 builder.Services.AddSingleton<WorkoutProvider>();
 builder.Services.AddSingleton<SmokesProvider>();
 builder.Services.AddSingleton<LogProvider>();

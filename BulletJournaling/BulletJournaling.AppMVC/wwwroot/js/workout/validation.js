@@ -6,12 +6,12 @@ $(function () {
         //let antiForgeryToken = $("#UserLoginModal input[name = '__RequestVerificationToken']").val();
         //alert(antiForgeryToken);
 
-        let type = $("#add-log-form input[name = 'Title']").val();
-        let durationMinutes = $("#add-log-form input[name = 'DurationMintues']").val();
+        let type = $("#add-log-form input[name = 'Type']").val();
+        let durationMintues = $("#add-log-form input[name = 'DurationMintues']").val();
 
         let userInput = {
             Type: type,
-            DurationMinutes: durationMinutes
+            DurationMintues: Number(durationMintues)
         }
 
         $.ajax({

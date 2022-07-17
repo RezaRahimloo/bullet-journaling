@@ -4,6 +4,30 @@ namespace TestServices;
 public class WorkoutProvider
 {
     private List<WorkoutModel> _workouts = new List<WorkoutModel>();
+    public bool AddToday(WorkoutModel workout)
+    {
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+        WorkoutModel todayWorkout = _workouts.FirstOrDefault(day => day.Date == today);
+        if(workout is null)
+        {
+            return false;
+        }
+        if(todayWorkout is null)
+        {
+            Console.WriteLine("END");
+            _workouts.Add(workout);
+        }
+        else
+        {
+            
+            todayWorkout.didWorkout = workout.didWorkout;
+            todayWorkout.DurationMintues = workout.DurationMintues;
+            todayWorkout.Type = workout.Type;
+            Console.WriteLine("Modified");
+            Console.WriteLine(todayWorkout.didWorkout);
+        }
+        return true;
+    }
 
     public List<WorkoutModel> GetWorkouts()
     {
@@ -17,7 +41,7 @@ public class WorkoutProvider
             DateOnly lastFourMonths = new(fourMonthsAgo.Year, fourMonthsAgo.Month, 1);
             for (int j = 0; j < DateTime.DaysInMonth(lastFourMonths.Year, lastFourMonths.Month); j++)
             {
-                if(j%4 == 0)
+                if(j%4 == 4)
                 {
                     _workouts?.Add(new WorkoutModel 
                     { 
@@ -30,7 +54,8 @@ public class WorkoutProvider
                     {
                         didWorkout = true,
                         Type = "Murder",
-                        DurationMintues = 666
+                        DurationMintues = 666,
+                        Date = lastFourMonths.AddDays(j)
                     });
                 }
             }
