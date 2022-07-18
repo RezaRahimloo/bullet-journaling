@@ -4,12 +4,36 @@ using BulletJournaling.AppMVC.Models;
 namespace TestServices;
 public class MbaProvider
 {
-    private List<MbaModel> _lessons = new();
+    private List<MbaModel> _mbas = new();
+    public bool AddMba(MbaModel mba)
+    {
+        if(mba is null)
+        {
+            return false;
+        }
+        _mbas.Add(mba);
+        return true;
+    }
+    public bool AddLesson(string lesson)
+    {
+        if(string.IsNullOrEmpty(lesson))
+        {
+            return false;
+        }
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+        var todayMba = _mbas.FirstOrDefault(mba => mba.Date == today);
+        if(todayMba == null)
+        {
+            return false;
+        }
+        todayMba.ImportantLessons.Add(lesson);
+        return true;
+    }
     public List<MbaModel> GetMbaModels()
     {
-        if(_lessons.Count > 0)
+        if(_mbas.Count > 0)
         {
-            return _lessons;
+            return _mbas;
         }
         for (int i = -3; i < 1; i++)
         {
@@ -19,17 +43,18 @@ public class MbaProvider
             {
                 if(j%4 == 0)
                 {
-                    _lessons?.Add(new MbaModel 
+                    _mbas?.Add(new MbaModel 
                     { 
                         DidDo = false
                     });
                 }
                 else
                 {
-                    _lessons?.Add(new MbaModel
+                    _mbas?.Add(new MbaModel
                     {
                         DidDo = true,
                         Type = "cringe",
+                        Date = lastFourMonths.AddDays(j),
                         Part = new Random().Next(1, 10),
                         ImportantLessons = new List<string>
                         {
@@ -41,6 +66,6 @@ public class MbaProvider
                 }
             }
         }
-        return _lessons;
+        return _mbas;
     }
 }

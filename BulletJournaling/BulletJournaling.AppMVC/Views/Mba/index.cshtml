@@ -88,7 +88,18 @@
         </div>
     }
 </div>
-<partial name="_AddTodayPartial" />
+<button id="add-class">Add Today's class</button>
+<button id="add-lesson">Add a Lesson for today</button>
+<div id="log-form-wrapper">
+    <partial name="_AddTodayPartial" model = "new MbaModel
+        {
+            DidDo = false,
+            Type = string.Empty,
+            Part = 0,
+            ImportantLessons = new List<string>()
+        }"/>
+</div>
+<div class="grey-shade-form"></div>
 <div id="day-activites">
 
 </div>
