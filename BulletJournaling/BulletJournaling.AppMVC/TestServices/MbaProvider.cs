@@ -26,6 +26,15 @@ public class MbaProvider
         {
             return false;
         }
+        var importantLessons = todayMba.ImportantLessons;
+        if(importantLessons.Count > 0)
+        {
+            lesson.Id = importantLessons[importantLessons.Count - 1 ].Id + 1;
+        }
+        else
+        {
+            lesson.Id = 0;
+        }
         todayMba.ImportantLessons.Add(lesson);
         return true;
     }
