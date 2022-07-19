@@ -98,6 +98,7 @@ main{
     width: 100%;
     padding: 30px;
     font-size: large;
+    margin-top: 30px;
 }
 .important-lesson{
     min-width: 300px;
@@ -126,7 +127,97 @@ main{
 ul.important-lessons{
     display: none;
 }
-
+#log-form-wrapper{
+    z-index: 2;
+    position: fixed;
+    top: -800px;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(170, 174, 192);
+    padding: 30px;
+    width: 90vw;
+    height: 80vh;
+    max-width: 500px;
+    max-height: 500px;
+    border-radius: 12px;
+    font-size: large;
+    transition: top 0.7s;
+}
+form#add-log-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+}
+#log-form-wrapper.open{
+    top: 50vh;
+}
+.grey-shade-form{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+.grey-shade-form.active{
+    display: block;
+}
+button#add-class, button#add-lesson{
+    padding: 10px 20px;
+    border-radius: 10px;
+    
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+button#add-class{
+    background-color: #8fca94;
+    font-size: large;
+}
+button#add-lesson{
+    background-color: rgb(127, 173, 216);
+    font-size: 101%;
+    margin-top: 25px;
+}
+label[for= "Lesson"]{
+    font-size: larger;
+    margin-top: 40px;
+}
+textarea[name= "Lesson"]{
+    outline: none;
+    margin-top: 20px;
+    border-radius: 6px;
+    border: 1px solid rgb(112, 112, 112);
+    width: 105%;
+    height: 105%;
+    font-size: 105%;
+    padding: 6px;
+    resize: none;
+}
+#addLessonWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    border-top: 1px solid black;
+    
+    width: 90%;
+    max-width: 500px;
+    
+}
 @media (max-width: 600px){
     #log-calender{
         flex-direction: column;

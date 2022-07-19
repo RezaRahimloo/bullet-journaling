@@ -8,6 +8,7 @@
 }
 @section Scripts {
     <script src="~/js/Mba/mba.js" asp-append-version="true"></script>
+    <script src="~/js/Mba/validation.js" asp-append-version="true"></script>
 }
 <div id="log-calender" class="calender">
     @for (int month = -3; month < 1; month++)
@@ -64,7 +65,7 @@
                                     @foreach(var lesson in Model[proccessedDays].ImportantLessons)
                                     {
                                         <li class="important-lesson">
-                                            @lesson
+                                            @lesson.Lesson
                                         </li>
                                     }
                                 </ul>
@@ -89,7 +90,7 @@
     }
 </div>
 <button id="add-class">Add Today's class</button>
-<button id="add-lesson">Add a Lesson for today</button>
+
 <div id="log-form-wrapper">
     <partial name="_AddTodayMbaPartial" model = "new MbaModel
         {
@@ -99,6 +100,7 @@
             ImportantLessons = new List<LessonModel>()
         }"/>
 </div>
+
 <div id="addLessonWrapper">
     <partial name="_AddTodayLessonPartial" model = "new LessonModel
         {
@@ -106,6 +108,7 @@
             Lesson = string.Empty
         }"/>
 </div>
+<button id="add-lesson">Add a Lesson for today</button>
 <div class="grey-shade-form"></div>
 <div id="day-activites">
 
