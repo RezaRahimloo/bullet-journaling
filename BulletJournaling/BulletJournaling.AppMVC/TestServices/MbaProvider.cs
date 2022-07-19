@@ -14,9 +14,9 @@ public class MbaProvider
         _mbas.Add(mba);
         return true;
     }
-    public bool AddLesson(string lesson)
+    public bool AddLesson(LessonModel lesson)
     {
-        if(string.IsNullOrEmpty(lesson))
+        if(string.IsNullOrEmpty(lesson.Lesson))
         {
             return false;
         }
@@ -56,11 +56,23 @@ public class MbaProvider
                         Type = "cringe",
                         Date = lastFourMonths.AddDays(j),
                         Part = new Random().Next(1, 10),
-                        ImportantLessons = new List<string>
+                        ImportantLessons = new List<LessonModel>
                         {
-                            "lesson1: rfd js fsdj jdfio sjdoijsdoig josdgios jodfjug ",
-                            "lesson2: sdj sdfu sdhfiudhsiuh ifh ui haih guih giudi gydfiu hgih giluh d",
-                            "lesson3: ds fjhosudh iudsh uifdhui hduif huidfs dflfdg fd fh ilfd lifhgl fdl fd hldfh lidfuh glfih glfhgld fhglfh gfglifh lidfh lifuhli l fgh uif hiduu8rsrytseryh terot srofuis ghduih giufodfgj ifdj oifji ojfdio jfiojfdoigdouriodugjoi"
+                            new LessonModel 
+                            {
+                                Id = 0,
+                                Lesson = "lesson1: rfd js fsdj jdfio sjdoijsdoig josdgios jodfjug "
+                            },
+                            new LessonModel 
+                            {
+                                Id = 0,
+                                Lesson = "lesson2: sdj sdfu sdhfiudhsiuh ifh ui haih guih giudi gydfiu hgih giluh d"
+                            },
+                            new LessonModel 
+                            {
+                                Id = 0,
+                                Lesson = "lesson3: ds fjhosudh iudsh uifdhui hduif huidfs dflfdg fd fh ilfd lifhgl fdl fd hldfh lidfuh glfih glfhgld fhglfh gfglifh lidfh lifuhli l fgh uif hiduu8rsrytseryh terot srofuis ghduih giufodfgj ifdj oifji ojfdio jfiojfdoigdouriodugjoi"
+                            }
                         }
                     });
                 }

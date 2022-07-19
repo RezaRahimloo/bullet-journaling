@@ -91,12 +91,19 @@
 <button id="add-class">Add Today's class</button>
 <button id="add-lesson">Add a Lesson for today</button>
 <div id="log-form-wrapper">
-    <partial name="_AddTodayPartial" model = "new MbaModel
+    <partial name="_AddTodayMbaPartial" model = "new MbaModel
         {
             DidDo = false,
             Type = string.Empty,
             Part = 0,
-            ImportantLessons = new List<string>()
+            ImportantLessons = new List<LessonModel>()
+        }"/>
+</div>
+<div id="addLessonWrapper">
+    <partial name="_AddTodayLessonPartial" model = "new LessonModel
+        {
+            Id = -1,
+            Lesson = string.Empty
         }"/>
 </div>
 <div class="grey-shade-form"></div>

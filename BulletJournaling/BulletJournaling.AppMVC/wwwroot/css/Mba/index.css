@@ -126,6 +126,7 @@ main{
 ul.important-lessons{
     display: none;
 }
+
 @media (max-width: 600px){
     #log-calender{
         flex-direction: column;

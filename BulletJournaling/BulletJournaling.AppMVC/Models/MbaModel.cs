@@ -11,6 +11,6 @@ namespace BulletJournaling.AppMVC.Models
         [Required]
         public int Part { get; set; }
         public DateOnly Date { get; set; }
-        public List<string> ImportantLessons { get; set; }
+        public List<LessonModel> ImportantLessons { get; set; }
     }
 }

@@ -1,0 +1,6 @@
+@model LessonModel;
+
+<input asp-for="Id" hidden>
+<label asp-for="Lesson" class="property-label"></label>
+<input asp-for="Lesson" placeholder="Lesson">
+<span asp-validation-for="Lesson" class="property-errors"></span>
