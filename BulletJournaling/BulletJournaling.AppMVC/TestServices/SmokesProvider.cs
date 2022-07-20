@@ -62,7 +62,7 @@ public class SmokesProvider
             DateOnly lastFourMonths = new(fourMonthsAgo.Year, fourMonthsAgo.Month, 1);
             for (int j = 0; j < DateTime.DaysInMonth(lastFourMonths.Year, lastFourMonths.Month); j++)
             {
-                if(false)
+                if(j%2 == 3)
                 {
                     _smokings.Add(new SmokingModel 
                     { 

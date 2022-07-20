@@ -110,6 +110,20 @@ main{
     box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
+.deleteLesson{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    margin-left: auto;
+    margin-top: 12px;
+    cursor: pointer;
+}
+.deleteLesson img{
+    width: 50%;
+    height: 50%;
+}
 .log-header{
     display: flex;
     min-width: 300px;
@@ -172,7 +186,7 @@ form#add-log-form{
 .grey-shade-form.active{
     display: block;
 }
-button#add-class, button#add-lesson{
+button#add-class, button#add-lesson, button#clear-today{
     padding: 10px 20px;
     border-radius: 10px;
     
@@ -186,6 +200,13 @@ button#add-class, button#add-lesson{
 button#add-class{
     background-color: #8fca94;
     font-size: large;
+}
+button#clear-today{
+    background-color: rgb(44, 44, 44);
+    color: azure;
+    font-size: 101%;
+    margin-top: 20px;
+    box-shadow: none;
 }
 button#add-lesson{
     background-color: rgb(127, 173, 216);

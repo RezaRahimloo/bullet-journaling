@@ -1,7 +1,7 @@
 $(function () {
     let userLoginButton = $("button#addDayLesson").click(onUserAddMbaClick);
     let addLessonButton = $("button#add-lesson").click(onAddLessonClick);
-    let userClearButton = $("button#clearToday").click(clearToday);
+    let userClearButton = $("button#clear-today").click(clearToday);
     function onUserAddMbaClick() {
         let url = "/Mba/AddMba";
         //input[name = '__RequestVerificationToken'] this is a hidden input field that's automaticaly added by mvc
@@ -86,14 +86,12 @@ $(function () {
         });
     }
     function clearToday(){
-        let url = `/workout/ClearToday`;
+        let url = `/Mba/ClearToday`;
         $.ajax({
             type: "DELETE",
             url: url,
             success: (data) => {
-                console.log(data);
-                alert("Deleted!"); 
-                location.href = "/workout/Index"; 
+                location.href = "/Mba/Index"; 
             },
             error: (xhr, ajaxOptions, thrownError) => {
                 var errorText = "Status: " + xhr.status + " - " + xhr.statusText;
@@ -103,4 +101,25 @@ $(function () {
             }
         })
     }
+    
 });
+function deleteLesson(elm){
+    let url = `/Mba/DeleteLesson`;
+    let deleteId = {
+        id: elm.dataset.id
+    }
+    $.ajax({
+        type: "DELETE",
+        url: url,
+        data: deleteId,
+        success: (data) => {
+            location.href = "/Mba/Index"; 
+        },
+        error: (xhr, ajaxOptions, thrownError) => {
+            var errorText = "Status: " + xhr.status + " - " + xhr.statusText;
+
+            //PresentClosableBootstrapAlert("#alert_placeholder_login", "danger", "Error!", errorText);
+            console.error(thrownError + "\r\n" + xhr.statusCode + "\r\n" + xhr.responseText);
+        }
+    })
+}

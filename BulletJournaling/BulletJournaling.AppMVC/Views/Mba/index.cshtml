@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "MBA";
     int proccessedDays = 0;
+    var today = DateOnly.FromDateTime(DateTime.Now);
 }
 @section Styles {
     <link rel="stylesheet" href="~/css/Mba/index.css" asp-append-version="true" />
@@ -66,6 +67,12 @@
                                     {
                                         <li class="important-lesson">
                                             @lesson.Lesson
+                                            @if(Model[proccessedDays].Date == today)
+                                            {
+                                                <span class="deleteLesson" data-id="@lesson.Id" onclick="deleteLesson(this)">
+                                                    <img class="delete-lesson-svg" src="~/svgs/delete_red.svg" alt="delete">
+                                                </span>
+                                            }
                                         </li>
                                     }
                                 </ul>
@@ -89,8 +96,8 @@
         </div>
     }
 </div>
-<button id="add-class">Add Today's class</button>
-
+<button id="add-class">Add Today's Class</button>
+<button id="clear-today">Clear Today's Class</button>
 <div id="log-form-wrapper">
     <partial name="_AddTodayMbaPartial" model = "new MbaModel
         {

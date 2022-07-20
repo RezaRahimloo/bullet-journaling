@@ -19,6 +19,7 @@ public class MbaProvider
         }
         else
         {
+            todayMba.DidDo = true;
             todayMba.Type = mba.Type;
             todayMba.Part = mba.Part;
         }
@@ -48,6 +49,33 @@ public class MbaProvider
             lesson.Id = 0;
         }
         todayMba.ImportantLessons.Add(lesson);
+        return true;
+    }
+    public bool ClearToday()
+    {
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+        var todayMba = _mbas.FirstOrDefault(mba => mba.Date == today);
+        if(todayMba is null)
+        {
+            return false;
+        }
+        todayMba.DidDo = false;
+        return true;
+    }
+    public bool DeleteLessonToday(int id)
+    {
+        if(id < 0)
+        {
+            return false;
+        }
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+        var todayMba = _mbas.FirstOrDefault(mba => mba.Date == today);
+        if(todayMba is null)
+        {
+            return false;
+        }
+        int deletingIndex = todayMba.ImportantLessons.FindIndex(lesson => lesson.Id == id);
+        todayMba.ImportantLessons.RemoveAt(deletingIndex);
         return true;
     }
     public List<MbaModel> GetMbaModels()

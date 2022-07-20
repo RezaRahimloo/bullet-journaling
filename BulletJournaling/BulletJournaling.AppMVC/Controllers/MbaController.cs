@@ -49,5 +49,23 @@ namespace BulletJournaling.AppMVC.Controllers
             }
             return RedirectToAction("Index", "Mba");
         }
+        [HttpDelete]
+        public async Task<IActionResult> ClearToday()
+        {
+            if(!_mbaProvider.ClearToday())
+            {
+                return BadRequest("Today has no MBA Class record!");
+            }
+            return RedirectToAction("Index", "Mba");
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteLesson(int id)
+        {
+            if(!_mbaProvider.DeleteLessonToday(id))
+            {
+                return BadRequest("this item does not exist!");
+            }
+            return RedirectToAction("Index", "Mba");
+        }
     }
 }
