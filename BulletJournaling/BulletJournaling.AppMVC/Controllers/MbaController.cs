@@ -20,6 +20,8 @@ namespace BulletJournaling.AppMVC.Controllers
         public async Task<IActionResult> AddMba(MbaModel mba)
         {
             mba.DidDo = false;
+            Console.WriteLine(mba.Type);
+            Console.WriteLine(mba.Part);
             if(!ModelState.IsValid)
             {
                 return PartialView("_AddTodayMbaPartial");
@@ -32,18 +34,19 @@ namespace BulletJournaling.AppMVC.Controllers
             return RedirectToAction("Index", "Mba");
         }
         [HttpPost]
-        public async Task<IActionResult> AddLesson(LessonModel lesson)
+        public async Task<IActionResult> AddLesson(LessonModel lessonModel)
         {
-            lesson.Id = -1;
+            //lesson.Id = -1;
+            Console.WriteLine(lessonModel.Id);
+            Console.WriteLine(lessonModel.Lesson);
             if(!ModelState.IsValid)
             {
                 return PartialView("_AddTodayLessonPartial");
             }
-            if(!_mbaProvider.AddLesson(lesson))
+            if(!_mbaProvider.AddLesson(lessonModel))
             {
                 return BadRequest("Lesson cannot be added!");
             }
-            _mbaProvider.AddLesson(lesson);
             return RedirectToAction("Index", "Mba");
         }
     }

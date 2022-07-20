@@ -11,13 +11,25 @@ public class MbaProvider
         {
             return false;
         }
-        _mbas.Add(mba);
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+        var todayMba = _mbas.FirstOrDefault(mba => mba.Date == today);
+        if(todayMba is null)
+        {
+            _mbas.Add(mba);
+        }
+        else
+        {
+            todayMba.Type = mba.Type;
+            todayMba.Part = mba.Part;
+        }
+        
         return true;
     }
     public bool AddLesson(LessonModel lesson)
     {
         if(string.IsNullOrEmpty(lesson.Lesson))
         {
+            Console.WriteLine("String Empty");
             return false;
         }
         DateOnly today = DateOnly.FromDateTime(DateTime.Now);
