@@ -7,6 +7,7 @@ namespace BulletJournaling.AppMVC.Data
 {
     public class AppUser : IdentityUser
     {
+        public override string Id { get; set; }
         [StringLength(250)]
         public string FirstName { get; set; }
         [StringLength(250)]
