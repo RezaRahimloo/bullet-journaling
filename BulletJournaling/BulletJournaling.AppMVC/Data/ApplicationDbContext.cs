@@ -3,9 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BulletJournaling.AppMVC.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+
+    public class AppDb : IdentityDbContext<User>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public AppDb(DbContextOptions<AppDb> options)
             : base(options)
         {
         }
