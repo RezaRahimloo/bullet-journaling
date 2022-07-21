@@ -5,6 +5,7 @@ namespace BulletJournaling.AppMVC.Data.DatabaseModels
     public class Log
     {
         public Guid Id { get; set; }
+        public Guid DayLogId { get; set; }
         [Required]
         public string Title { get; set; }
         public string Description { get; set; }

@@ -5,6 +5,7 @@ namespace BulletJournaling.AppMVC.Data.DatabaseModels
     public class Mba
     {
         public Guid Id { get; set; }
+        public Guid UserId { get; set; }
         [Required]
         public bool DidDo { get; set; }
         [Required]
