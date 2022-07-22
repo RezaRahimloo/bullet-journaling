@@ -1,9 +1,10 @@
-@model List<DayLogModel>;
+@using BulletJournaling.AppMVC.Data.DatabaseModels;
+@model List<DayLog>;
 @{
     ViewData["Title"] = "Log";
     int proccessedDays = 0;
     DateOnly today = DateOnly.FromDateTime(DateTime.Now);
-    DayLogModel todayLog = Model.FirstOrDefault(dayLog => dayLog.day == today);
+    DayLog todayLog = Model.FirstOrDefault(dayLog => dayLog.day == today);
 }
 
 @section Styles {

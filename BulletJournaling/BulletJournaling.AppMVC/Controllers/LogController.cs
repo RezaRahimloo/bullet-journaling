@@ -1,6 +1,9 @@
+using BulletJournaling.AppMVC.Data;
 using BulletJournaling.AppMVC.Models;
+using BulletJournaling.AppMVC.Data.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using TestServices;
 
@@ -9,13 +12,22 @@ namespace BulletJournaling.AppMVC.Controllers
     public class LogController : Controller
     {
         private readonly LogProvider _logProvider;
-        public LogController(LogProvider logProvider)
+        private readonly AppDb _db;
+        public LogController(LogProvider logProvider, AppDb db)
         {
             _logProvider = logProvider;
+            _db = db;
         }
-        public IActionResult Index()
+        // public IActionResult Index()
+        // {
+        //     return View(_logProvider.GetDayLogs());
+        // }
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View(_logProvider.GetDayLogs());
+            
+            var dayLogs = await _db.DayLogs.ToListAsync();
+            return View(dayLogs);
         }
         //[AllowAnonymous]
         [HttpPost]
