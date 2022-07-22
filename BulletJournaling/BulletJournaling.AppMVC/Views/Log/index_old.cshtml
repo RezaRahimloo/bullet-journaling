@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Log";
     int proccessedDays = 0;
-    int dataIndex = 0;
     DateOnly today = DateOnly.FromDateTime(DateTime.Now);
     DayLog todayLog = Model.FirstOrDefault(dayLog => dayLog.day == today);
 }
@@ -15,12 +14,6 @@
     <script src="~/js/log/log.js" asp-append-version="true"></script>
     <script src="~/js/log/validation.js" asp-append-version="true"></script>
 }
-@if (Model.Count == 0)
-{
-    <h1>No data</h1>
-}
-else
-{
 <div id="log-calender" class="calender">
     @for (int month = -3; month < 1; month++)
     {  
@@ -62,32 +55,23 @@ else
                         {
                             continue;
                         }
-                        
-                        if(dataIndex < Model.Count && Model[dataIndex].day > lastFourMonths.AddDays(thisMonthsProccessed))
+                        if(@Model[proccessedDays].HasLog)
                         {
-                            <div class="day log dropdown" data-did="false" data-date="">
-
-                            </div>
-                        }
-                        else if(dataIndex < Model.Count && @Model[dataIndex].HasLog)
-                        {
-                            
-                            <div class="day log dropdown" data-did="true" data-date="@Model[dataIndex].day" tabindex="@dataIndex">
+                            <div class="day log dropdown" data-did="true" data-date="@Model[proccessedDays].day" tabindex="@proccessedDays">
                                 <div class="dropdown-content">
                                     <div class="title info">
-                                        @Model[dataIndex].day.ToString()
+                                        @Model[proccessedDays].day.ToString()
                                     </div>
-                                    @foreach(var log in Model[dataIndex].Logs)
+                                    @foreach(var log in Model[proccessedDays].Logs)
                                     {
                                         <div class="title info">
-                                            
                                             @log.Title
                                         </div>
                                         
                                     }
                                 </div>
                                 <div class="logs-content">
-                                    @foreach(var log in Model[dataIndex].Logs)
+                                    @foreach(var log in Model[proccessedDays].Logs)
                                     {
                                         <div class="log-wrapper">
                                             <div class="log-header">
@@ -97,7 +81,7 @@ else
                                             <div class="log-info">
                                                 @log.Description
                                             </div>
-                                            @if(Model[dataIndex].day == today)
+                                            @if(Model[proccessedDays].day == today)
                                             {
                                                 <span class="delete" data-id="@log.Id" onclick="deleteLog(this)">delete</span>
                                             }
@@ -107,15 +91,12 @@ else
                                     }
                                 </div>
                             </div>
-                            {dataIndex++;}
                         }
                         else
                         {
-                            
                             <div class="day log dropdown" data-did="false" data-date="">
 
                             </div>
-                            {dataIndex++;}
                         }
                         proccessedDays++;
                         thisMonthsProccessed++;
@@ -129,9 +110,6 @@ else
         </div>
     }
 </div>
-}
-
-
 <button id="add-log">Add Today's work!</button>
 <div id="log-form-wrapper">
     <partial name="_AddTodayPartial" model = "new LogModel

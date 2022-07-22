@@ -26,7 +26,9 @@ namespace BulletJournaling.AppMVC.Controllers
         public async Task<IActionResult> Index()
         {
             
-            var dayLogs = await _db.DayLogs.ToListAsync();
+            var dayLogs = await _db.DayLogs
+                .Include(dayLogs => dayLogs.Logs)
+                .ToListAsync();
             return View(dayLogs);
         }
         //[AllowAnonymous]
