@@ -12,6 +12,8 @@ namespace BulletJournaling.AppMVC.Data
         public string FirstName { get; set; }
         [StringLength(250)]
         public string LastName { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
         [ForeignKey("UserId")]
         public ICollection<DayLog> DayLogs { get; set; }
         [ForeignKey("UserId")]
