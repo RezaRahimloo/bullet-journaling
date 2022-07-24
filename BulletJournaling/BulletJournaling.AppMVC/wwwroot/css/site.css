@@ -37,8 +37,8 @@ a.nav-link, a.logo{
   padding: 30px;
   width: 90vw;
   height: 80vh;
-  max-width: 400px;
-  max-height: 600px;
+  max-width: 500px;
+  max-height: 700px;
   border-radius: 12px;
   font-size: large;
   transition: top 0.7s;
@@ -70,6 +70,10 @@ a.nav-link, a.logo{
   width: 120%;
   padding: 6px;
   align-self: center;
+  max-width: 300px;
+}
+.register-input-wrapper .property-errors{
+  color: rgb(228, 179, 179);
 }
 button#register{
   padding: 10px 20px;

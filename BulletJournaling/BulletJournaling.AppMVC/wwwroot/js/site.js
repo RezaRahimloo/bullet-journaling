@@ -1,10 +1,9 @@
 ﻿let greyShade = document.getElementById("grey-shade");
-let registerShade = document.getElementById("register-grey");
-let registerWrapper = document.getElementById("register-wrapper");
-let registerButton = document.querySelector("a#register");
 
-registerButton.addEventListener('click', openRegisterForm);
-registerShade.addEventListener("click", closeRegisterForm);
+
+
+
+
 
 function openNav() {
     document.querySelector('.links-wrapper').style.width = "250px";
@@ -22,14 +21,7 @@ document.getElementById("grey-shade").addEventListener('click', e=> {
     closeNav();
     greyShade.style.display = "none";
 });
-function openRegisterForm(){ 
-    registerShade.classList.add("active");
-    registerWrapper.classList.add("open");
-}
-function closeRegisterForm(){ 
-    registerShade.classList.remove("active");
-    registerWrapper.classList.remove("open");
-}
+
 $(function () {
     let userRegisterButton = $("#register-wrapper #register").click(onUserRegisterClick);
     let userLogoutButton = $("#button#logout").click(onUserRegisterClick);
