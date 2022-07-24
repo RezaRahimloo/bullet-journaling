@@ -3,7 +3,7 @@ let registerShade = document.getElementById("register-grey");
 let registerWrapper = document.getElementById("register-wrapper");
 let registerButton = document.querySelector("a#register");
 
-//registerButton.addEventListener('click', openRegisterForm);
+registerButton.addEventListener('click', openRegisterForm);
 registerShade.addEventListener("click", closeRegisterForm);
 
 function openNav() {

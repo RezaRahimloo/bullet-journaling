@@ -191,6 +191,7 @@ form#add-log-form{
     width: 100%;
     display: flex;
     flex-direction: column;
+    
 }
 .property-input{
     max-width: 300px;
@@ -202,6 +203,7 @@ form#add-log-form{
     font-size: large;
     padding-left: 10px;
     padding-top: 5px;
+    
 }
 .property-errors{
     color: rgb(230, 69, 69);
