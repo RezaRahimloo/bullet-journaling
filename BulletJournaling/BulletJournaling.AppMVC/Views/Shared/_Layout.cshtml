@@ -40,6 +40,14 @@
             LastName = string.Empty
         }" />
     </div>
+    <div id="login-wrapper">
+        <partial name="_LoginFormPatial" model="new LoginModel
+        {
+            Username= string.Empty,
+            Password= string.Empty,
+            RememberMe= false
+        }"/>
+    </div>
     <div id="register-grey"></div>
     <div class="container">
         <main role="main" class="pb-3">

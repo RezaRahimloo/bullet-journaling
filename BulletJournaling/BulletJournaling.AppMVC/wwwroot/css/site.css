@@ -42,6 +42,7 @@ a.nav-link, a.logo{
   border-radius: 12px;
   font-size: large;
   transition: top 0.7s;
+  border: 3px solid green;
 }
 #register-wrapper.open{
   top: 50vh;

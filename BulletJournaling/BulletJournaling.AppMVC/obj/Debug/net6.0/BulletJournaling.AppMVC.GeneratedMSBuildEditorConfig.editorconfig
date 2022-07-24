@@ -8,113 +8,113 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BulletJournaling.AppMVC
 build_property.RootNamespace = BulletJournaling.AppMVC
-build_property.ProjectDir = D:\TheSelfTaught\bullet-journaling\BulletJournaling\BulletJournaling.AppMVC\
+build_property.ProjectDir = d:\TheSelfTaught\bullet-journaling\BulletJournaling\BulletJournaling.AppMVC\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\TheSelfTaught\bullet-journaling\BulletJournaling\BulletJournaling.AppMVC
+build_property.MSBuildProjectDirectory = d:\TheSelfTaught\bullet-journaling\BulletJournaling\BulletJournaling.AppMVC
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Areas/Identity/Pages/_ViewStart.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/DayLog/Create.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/DayLog/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF5TG9nXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/DayLog/Delete.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/DayLog/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF5TG9nXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/DayLog/Details.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/DayLog/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF5TG9nXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/DayLog/Edit.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/DayLog/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF5TG9nXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/DayLog/Index.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/DayLog/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF5TG9nXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Home/Index.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Home/Privacy.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Log/index.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Log/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nXGluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Log/index_old.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Log/index_old.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nXGluZGV4X29sZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Log/_AddTodayPartial.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Log/_AddTodayPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nXF9BZGRUb2RheVBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Mba/index.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Mba/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWJhXGluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Mba/_AddTodayLessonPartial.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Mba/_AddTodayLessonPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWJhXF9BZGRUb2RheUxlc3NvblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Mba/_AddTodayMbaPartial.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Mba/_AddTodayMbaPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWJhXF9BZGRUb2RheU1iYVBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Shared/Error.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Shared/_LoginFormPatial.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Shared/_LoginFormPatial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpbkZvcm1QYXRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Shared/_LoginPartial.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Shared/_RegisterFormPartial.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Shared/_RegisterFormPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9SZWdpc3RlckZvcm1QYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Smoking/Index.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Smoking/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU21va2luZ1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Smoking/_AddTodayPartial.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Smoking/_AddTodayPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU21va2luZ1xfQWRkVG9kYXlQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Workout/index.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Workout/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya291dFxpbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Workout/_AddTodayPartial.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Workout/_AddTodayPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya291dFxfQWRkVG9kYXlQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/_ViewImports.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/_ViewStart.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Shared/_Layout.cshtml]
+[d:/TheSelfTaught/bullet-journaling/BulletJournaling/BulletJournaling.AppMVC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-tdpulszujl
