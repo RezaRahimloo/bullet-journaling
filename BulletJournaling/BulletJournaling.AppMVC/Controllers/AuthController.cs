@@ -26,7 +26,7 @@ namespace BulletJournaling.AppMVC.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        [Route("login")]
+        [Route("/login")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
@@ -46,8 +46,10 @@ namespace BulletJournaling.AppMVC.Controllers
         [AllowAnonymous]//don't need special authorization to access this method
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/register")]
         public async Task<IActionResult> RegisterUser(RegistrationModel registrationModel)
         {
+            Console.WriteLine("Register method ran!");
             if(ModelState.IsValid)
             {
                 AppUser user = new AppUser
@@ -63,12 +65,12 @@ namespace BulletJournaling.AppMVC.Controllers
                 if(result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return PartialView("_UserRegistrationPartial", registrationModel);
+                    return PartialView("_RegisterFormPartial", registrationModel);
                 }
                 AddErrorsToModelState(result);
             }
-
-            return PartialView("_UserRegistrationPartial", registrationModel);
+            Console.WriteLine("Model not valid return partial");
+            return PartialView("_RegisterFormPartial", registrationModel);
         }
         public async Task<bool> UserNameExists(string userName)
         {
