@@ -30,12 +30,22 @@
         </nav>
         <div id="grey-shade"></div>
     </header>
+    <div id="register-wrapper">
+        <partial name="_RegisterFormPartial" model="new RegistrationModel
+        {
+            Email = string.Empty,
+            Password = string.Empty,
+            ConfirmPassword = string.Empty,
+            FirstName = string.Empty,
+            LastName = string.Empty
+        }" />
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
+    
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - BulletJournaling.AppMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

@@ -1,0 +1,42 @@
+@model RegistrationModel;
+
+    <form id="register-form" asp-controller="Auth" asp-action="Register">
+        <div asp-validation-summary="ModelOnly" class="property-errors"></div>
+        <div class="property-wrapper">
+            <label asp-for="Email" class="property-label"></label>
+            <div class="input-wrapper">
+                <input asp-for="Email" placeholder="Email" class="property-input">
+                <span asp-validation-for="Email" class="property-errors"></span>
+            </div>
+        </div>
+        <div class="property-wrapper">
+            <label asp-for="Password" class="property-label"></label>
+            <div class="input-wrapper">
+                <input asp-for="Password" placeholder="Password" class="property-input"></input>
+                <span asp-validation-for="Password" class="property-errors"></span>
+            </div>
+        </div>
+        <div class="property-wrapper">
+            <label asp-for="ConfirmPassword" class="property-label"></label>
+            <div class="input-wrapper">
+                <input asp-for="ConfirmPassword" placeholder="ConfirmPassword" class="property-input">
+                <span asp-validation-for="ConfirmPassword" class="property-errors"></span>
+            </div>
+        </div>
+        <div class="property-wrapper">
+            <label asp-for="FirstName" class="property-label"></label>
+            <div class="input-wrapper">
+                <input asp-for="FirstName" placeholder="FirstName" class="property-input">
+                <span asp-validation-for="FirstName" class="property-errors"></span>
+            </div>
+        </div>
+        <div class="property-wrapper">
+            <label asp-for="LastName" class="property-label"></label>
+            <div class="input-wrapper">
+                <input asp-for="LastName" placeholder="LastName" class="property-input">
+                <span asp-validation-for="LastName" class="property-errors"></span>
+            </div>
+        </div>
+        
+    </form>
+    <button id="register">Register</button>
