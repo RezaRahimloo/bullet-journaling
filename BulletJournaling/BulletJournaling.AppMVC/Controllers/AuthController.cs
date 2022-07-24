@@ -72,6 +72,24 @@ namespace BulletJournaling.AppMVC.Controllers
             Console.WriteLine("Model not valid return partial");
             return PartialView("_RegisterFormPartial", registrationModel);
         }
+        [AllowAnonymous]//don't need special authorization to access this method
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("/account/logout")]
+        public async Task<IActionResult> Logout(string returnUrl = null)
+        {
+            Console.WriteLine("logouting");
+            await _signInManager.SignOutAsync();
+            Console.WriteLine("out");
+            if(returnUrl != null)
+            {
+                return LocalRedirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         public async Task<bool> UserNameExists(string userName)
         {
             bool userNameExists = await _db.Users.AnyAsync(u => u.UserName.ToUpper() == userName.ToUpper());

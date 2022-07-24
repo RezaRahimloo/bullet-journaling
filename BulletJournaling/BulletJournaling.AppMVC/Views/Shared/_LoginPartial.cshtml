@@ -8,7 +8,9 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <a href="#">@User.Identity?.Name</a>
-    <button id="logout" class="nav-link">Logout</button>
+    <form asp-controller="Auth" asp-action="Logout" asp-route-returnUrl='@Url.Action("Index", "Home" )'>
+        <button type="submit">Logout</button>
+    </form>
 }
 else
 {
