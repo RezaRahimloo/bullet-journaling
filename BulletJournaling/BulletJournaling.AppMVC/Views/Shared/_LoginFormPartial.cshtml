@@ -1,27 +1,27 @@
 @model LoginModel;
 
     <form id="login-form" asp-controller="Auth" asp-action="Login">
-        <div asp-validation-summary="ModelOnly" class="property-errors"></div>
+        <div asp-validation-summary="All" class="property-errors"></div>
+        <input hidden asp-for="LoginInvalid">
         <div class="register-input-wrapper">
             <label asp-for="Username" class="property-label"></label>
             <div class="input-wrapper">
                 <input asp-for="Username" placeholder="Username" class="property-input">
-                <span asp-validation-for="Username" class="property-errors"></span>
+                <span asp-validation-for="Username" class="property-errors" hidden></span>
             </div>
         </div>
         <div class="register-input-wrapper">
             <label asp-for="Password" class="property-label"></label>
             <div class="input-wrapper">
                 <input asp-for="Password" placeholder="Password" class="property-input"></input>
-                <span asp-validation-for="Password" class="property-errors"></span>
+                <span asp-validation-for="Password" class="property-errors" hidden></span>
             </div>
         </div>
         <div class="register-input-wrapper">
-            <label asp-for="RememberMe" class="property-label"></label>
             <div class="input-wrapper">
                 <input asp-for="RememberMe" class="property-input">
-                <span asp-validation-for="RememberMe" class="property-errors"></span>
             </div>
+            <label asp-for="RememberMe" class="property-label"></label>
         </div>
     </form>
     <button id="login">Login</button>

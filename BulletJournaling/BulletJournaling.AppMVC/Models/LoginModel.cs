@@ -7,7 +7,9 @@ namespace BulletJournaling.AppMVC.Models
         [Required]
         public string Username { get; set; }
         [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         public bool RememberMe { get; set; } = false;
+        public string LoginInvalid { get; set; }
     }
 }

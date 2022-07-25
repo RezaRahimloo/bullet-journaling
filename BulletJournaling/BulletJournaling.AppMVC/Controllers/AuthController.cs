@@ -28,8 +28,9 @@ namespace BulletJournaling.AppMVC.Controllers
         [HttpPost]
         [Route("/login")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        public async Task<IActionResult> Login(LoginModel model)
         {
+            model.LoginInvalid = "true";
             if(ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Username,
@@ -40,8 +41,17 @@ namespace BulletJournaling.AppMVC.Controllers
                 {
                     ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
                 }
+                else
+                {
+                    model.LoginInvalid = "false";
+                    return PartialView("_LoginFormPartial", model);
+                }
             }
-            return Unauthorized("Wrong user name or password!");
+            // ModelState["UserName"].Errors.Clear();
+            // ModelState["Password"].Errors.Clear();
+            model.LoginInvalid = "true";
+            ModelState.AddModelError("Failed","Wrong username or password!");
+            return PartialView("_LoginFormPartial", model);
         }
         [AllowAnonymous]//don't need special authorization to access this method
         [HttpPost]

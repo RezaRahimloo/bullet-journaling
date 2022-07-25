@@ -24,7 +24,9 @@ document.getElementById("grey-shade").addEventListener('click', e=> {
 
 $(function () {
     let userRegisterButton = $("#register-wrapper #register").click(onUserRegisterClick);
-    let userLogoutButton = $("#button#logout").click(onUserRegisterClick);
+    let userLoginButton = $("#login-wrapper button#login").click(onUserLoginClick);
+
+
     function onUserRegisterClick() {
         let url = "/register";
         //input[name = '__RequestVerificationToken'] this is a hidden input field that's automaticaly added by mvc
@@ -75,25 +77,21 @@ $(function () {
             }
         });
     }
-    function onUserLogoutClick() {
-        let url = "/account/logout";
+    function onUserLoginClick() {
+        let url = "/login";
         //input[name = '__RequestVerificationToken'] this is a hidden input field that's automaticaly added by mvc
-        let antiForgeryToken = $("#register-form input[name = '__RequestVerificationToken']").val();
+        let antiForgeryToken = $("#login-form input[name = '__RequestVerificationToken']").val();
         //alert(antiForgeryToken);
 
-        let email = $("#register-form input[name = 'Email']").val();
-        let password = $("#register-form input[name = 'Password']").val();
-        let confirmPassword = $("#register-form input[name = 'ConfirmPassword']").val();
-        let firstName = $("#register-form input[name = 'FirstName']").val();
-        let lastName = $("#register-form input[name = 'LastName']").val();
+        let userName = $("#login-form input[name = 'Username']").val();
+        let password = $("#login-form input[name = 'Password']").val();
+        let rememberMe = $("#login-form input[name = 'RememberMe']").val();
 
         let userInput = {
             __RequestVerificationToken: antiForgeryToken,
-            Email: email,
+            Username: userName,
             Password: password,
-            ConfirmPassword: confirmPassword,
-            FirstName: firstName,
-            LastName: lastName
+            RememberMe: rememberMe
         }
 
         $.ajax({
@@ -101,16 +99,14 @@ $(function () {
             url: url,
             data: userInput,
             success: (data) => {//the data returned from server in this case its _UserLoginPartial, Partieal view
-                let hasErrors = false
+                
                 let parsed = $.parseHTML(data);
-                if($(parsed).find("span.property-errors.field-validation-error").length > 0){
-                    hasErrors = true
-                }
+                let hasErrors = $(parsed).find("input[name = 'LoginInvalid']").val() == "true";
                 console.log(hasErrors);
                 if (hasErrors) {
-                    $("#register-wrapper").html(data);
+                    $("#login-wrapper").html(data);
 
-                    userRegisterButton = $("#register-wrapper #register").click(onUserRegisterClick);
+                    userLoginButton = $("#login-wrapper #login").click(onUserLoginClick);
                     //we must wire up the click event again for the case  when the login dialog is rendered to the screen
                     //through the asynchronous process after a failed login attempt
                 } else {
