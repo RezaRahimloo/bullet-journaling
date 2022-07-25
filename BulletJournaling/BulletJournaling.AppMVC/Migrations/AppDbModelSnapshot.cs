@@ -114,7 +114,7 @@ namespace BulletJournaling.AppMVC.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("DayLogs");
+                    b.ToTable("DayLogs", (string)null);
                 });
 
             modelBuilder.Entity("BulletJournaling.AppMVC.Data.DatabaseModels.Lesson", b =>
@@ -134,7 +134,7 @@ namespace BulletJournaling.AppMVC.Migrations
 
                     b.HasIndex("MbaId");
 
-                    b.ToTable("Lesson");
+                    b.ToTable("Lesson", (string)null);
                 });
 
             modelBuilder.Entity("BulletJournaling.AppMVC.Data.DatabaseModels.Log", b =>
@@ -160,7 +160,7 @@ namespace BulletJournaling.AppMVC.Migrations
 
                     b.HasIndex("DayLogId");
 
-                    b.ToTable("Log");
+                    b.ToTable("Log", (string)null);
                 });
 
             modelBuilder.Entity("BulletJournaling.AppMVC.Data.DatabaseModels.Mba", b =>
@@ -189,7 +189,7 @@ namespace BulletJournaling.AppMVC.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Mbas");
+                    b.ToTable("Mbas", (string)null);
                 });
 
             modelBuilder.Entity("BulletJournaling.AppMVC.Data.DatabaseModels.Smoking", b =>
@@ -214,7 +214,7 @@ namespace BulletJournaling.AppMVC.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Smokings");
+                    b.ToTable("Smokings", (string)null);
                 });
 
             modelBuilder.Entity("BulletJournaling.AppMVC.Data.DatabaseModels.Workout", b =>
@@ -242,7 +242,7 @@ namespace BulletJournaling.AppMVC.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Workouts");
+                    b.ToTable("Workouts", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

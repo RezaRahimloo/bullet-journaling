@@ -13,11 +13,11 @@ public class LogProvider
             var logs = todayLog.Logs;
             if(logs.Count > 0)
             {
-                log.Id = logs[logs.Count - 1].Id + 1;
+                //log.Id = logs[logs.Count - 1].Id + 1;
             }
             else
             {
-                log.Id = 0;
+                //log.Id = 0;
             }
             todayLog.Logs.Add(log);
         }
@@ -31,7 +31,7 @@ public class LogProvider
                 {
                     new LogModel 
                     {
-                        Id=0, 
+                        //Id=0, 
                         Title = log.Title, 
                         Description = log.Description, 
                         DurationMinutes = log.DurationMinutes 
@@ -47,12 +47,12 @@ public class LogProvider
         DayLogModel todayLog = _dayLogs.FirstOrDefault(dayLog => dayLog.day == today);
         if(todayLog != null)
         {
-            int deletingLog = todayLog.Logs.FindIndex(log => log.Id == logId);
-            if(deletingLog > -1)
-            {
-                todayLog.Logs.RemoveAt(deletingLog);
-                return true;
-            }
+            //int deletingLog = todayLog.Logs.FindIndex(log => log.Id == logId);
+            // if(deletingLog > -1)
+            // {
+            //     todayLog.Logs.RemoveAt(deletingLog);
+            //     return true;
+            // }
         }
         return false;
     }
@@ -80,14 +80,14 @@ public class LogProvider
                     List<LogModel> logs = new();
                     logs.Add(new LogModel
                     {
-                        Id = 0,
+                        //Id = 0,
                         Title = "Learend DI",
                         Description = "Did sadskajsajdlksajdsa askl jdlaskj slak jals jaslj skadjals jds jask jaslkdj aslj sald jaskdj asdj sakj lasj sakjdsak jksaj kas k jdasj ash asj lasj lsaj lksaj lasj lkasj lasj saj dj j as hidushf isudh suidhfsd hfsdi hisd fhiudch fiu sdhsdihf dihfiudh iudjh i h hdi hfd  hidh fid hiu hsihdf hidf hilfdh udf fhiud idf hiudf hil sfiug fiu hdfgif hfd hidf hiu hifdif gifh gfi hfui this and that",
                         DurationMinutes = new Random().Next(1, 12)
                     });
                     logs.Add(new LogModel
                     {
-                        Id = 1,
+                        //Id = 1,
                         Title = "Learend CI/CD",
                         Description = "Did this and that",
                         DurationMinutes = new Random().Next(1, 12)

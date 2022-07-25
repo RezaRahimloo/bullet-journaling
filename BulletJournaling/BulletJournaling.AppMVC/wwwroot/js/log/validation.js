@@ -5,12 +5,13 @@ $(function () {
         //input[name = '__RequestVerificationToken'] this is a hidden input field that's automaticaly added by mvc
         //let antiForgeryToken = $("#UserLoginModal input[name = '__RequestVerificationToken']").val();
         //alert(antiForgeryToken);
-
+        let antiForgeryToken = $("#add-log-form input[name = '__RequestVerificationToken']").val();
         let title = $("#add-log-form input[name = 'Title']").val();
         let description = $("#add-log-form textarea[name = 'Description']").val();
         let durationMinutes = $("#add-log-form input[name = 'DurationMinutes']").val();
 
         let userInput = {
+            __RequestVerificationToken: antiForgeryToken,
             Title: title,
             Description: description,
             DurationMinutes: durationMinutes
