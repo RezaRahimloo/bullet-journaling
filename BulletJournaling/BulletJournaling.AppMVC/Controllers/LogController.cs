@@ -65,19 +65,36 @@ namespace BulletJournaling.AppMVC.Controllers
                     DurationMinutes = model.DurationMinutes
                 };
 
-                var logs = new List<Log>();
-                logs.Add(log);
+                
 
                 var user = await _userManager.GetUserAsync(User);
 
-                await _db.DayLogs.AddAsync(new DayLog
+                DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+
+                var todayDayLog = await _db.DayLogs
+                    .Where(dayLog => dayLog.UserId == user.Id)
+                    .FirstOrDefaultAsync(dayLog => dayLog.day == today);
+                
+                if(todayDayLog == null)
                 {
-                    Id= Guid.NewGuid(),
-                    UserId = user.Id,
-                    HasLog = true,
-                    day = DateOnly.FromDateTime(DateTime.Now),
-                    Logs = logs
-                });
+                    var logs = new List<Log>();
+                    logs.Add(log);
+                    await _db.DayLogs.AddAsync(new DayLog
+                    {
+                        Id= Guid.NewGuid(),
+                        UserId = user.Id,
+                        HasLog = true,
+                        day = DateOnly.FromDateTime(DateTime.Now),
+                        Logs = logs
+                    });
+                    await _db.SaveChangesAsync();
+                }
+                else
+                {
+                    todayDayLog.Logs.Add(log);
+                    _db.Update(todayDayLog);
+                }
+
                 await _db.SaveChangesAsync();
             }
             return PartialView("_AddTodayPartial", model);
