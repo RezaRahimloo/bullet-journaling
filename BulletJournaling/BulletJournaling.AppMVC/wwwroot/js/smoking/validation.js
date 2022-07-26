@@ -6,7 +6,7 @@ $(function () {
     function onUserSaveClick() {
         let url = "/smoking/AddToday";
         //input[name = '__RequestVerificationToken'] this is a hidden input field that's automaticaly added by mvc
-        //let antiForgeryToken = $("#UserLoginModal input[name = '__RequestVerificationToken']").val();
+        let antiForgeryToken = $("#add-smokes-form input[name = '__RequestVerificationToken']").val();
         //alert(antiForgeryToken);
 
         let didSmoke = $("#add-smokes-form input[name = 'DidSmoke']").val();
@@ -14,6 +14,7 @@ $(function () {
         let date = $("#add-smokes-form input[name = 'Date']").val();
 
         let userInput = {
+            __RequestVerificationToken: antiForgeryToken,
             DidSmoke: didSmoke,
             Number: number,
             Date: date

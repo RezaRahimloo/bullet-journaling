@@ -1,6 +1,7 @@
 using BulletJournaling.AppMVC.Data;
 using BulletJournaling.AppMVC.Data.DatabaseModels;
 using BulletJournaling.AppMVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -50,16 +51,63 @@ namespace BulletJournaling.AppMVC.Controllers
             }
             return View(new List<Smoking>());
         }
+        [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddToday(SmokingModel smoking)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddToday(Smoking smoking)
         {
+            //get user 
+            var user = await _userManager.GetUserAsync(User);
+
+            DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+            
             if(ModelState.IsValid)
             {
-                _smokeProvider.AddToday(smoking);
-                return RedirectToAction("Index", "Smoking");
+                if(smoking.Number > 0)
+                {
+                    smoking.DidSmoke = true;
+                }
+                else
+                {
+                    smoking.DidSmoke = false;
+                }
+
+                Smoking todaySmoking = await _db.Smokings
+                    .Where(s => s.UserId == user.Id)
+                    .FirstOrDefaultAsync(s => s.Date == today);
+                
+                if(todaySmoking is not null)
+                {
+                    todaySmoking.Number += smoking.Number;
+                    await _db.SaveChangesAsync();
+                    return RedirectToAction("Index", "Smoking");
+                }
+                else if(smoking.Number > 0)
+                {
+                    await _db.AddAsync(new Smoking
+                        {
+                            UserId = user.Id,
+                            Number = smoking.Number,
+                            Date = today,
+                            DidSmoke = smoking.DidSmoke
+                        });
+                    await _db.SaveChangesAsync();
+                    return RedirectToAction("Index", "Smoking");
+                }
+
             }
             return PartialView("_AddTodayPartial", smoking);
         }
+        // [HttpPost]
+        // public async Task<IActionResult> AddToday(SmokingModel smoking)
+        // {
+        //     if(ModelState.IsValid)
+        //     {
+        //         _smokeProvider.AddToday(smoking);
+        //         return RedirectToAction("Index", "Smoking");
+        //     }
+        //     return PartialView("_AddTodayPartial", smoking);
+        // }
         [HttpPut]
         public async Task<IActionResult> AddACigar()
         {
