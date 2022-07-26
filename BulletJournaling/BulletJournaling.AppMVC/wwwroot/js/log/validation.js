@@ -50,9 +50,11 @@ $(function () {
 });
 function deleteLog(elm){
     let id = elm.dataset.id;
+    let antiForgeryToken = $("#add-log-form input[name = '__RequestVerificationToken']").val();
     let url = `/log/deletelog`;
     let deleting = {
-        logId: Number(id)
+        __RequestVerificationToken: antiForgeryToken,
+        logId: id
     }
     $.ajax({
         type: "POST",

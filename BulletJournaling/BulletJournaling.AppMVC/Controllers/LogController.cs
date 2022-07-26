@@ -73,6 +73,7 @@ namespace BulletJournaling.AppMVC.Controllers
 
                 var todayDayLog = await _db.DayLogs
                     .Where(dayLog => dayLog.UserId == user.Id)
+                    .Include(dayLog => dayLog.Logs)
                     .FirstOrDefaultAsync(dayLog => dayLog.day == today);
                 
                 if(todayDayLog == null)
@@ -91,6 +92,7 @@ namespace BulletJournaling.AppMVC.Controllers
                 }
                 else
                 {
+                    todayDayLog.HasLog = true;
                     todayDayLog.Logs.Add(log);
                     _db.Update(todayDayLog);
                 }
@@ -114,6 +116,7 @@ namespace BulletJournaling.AppMVC.Controllers
             DayLog todayDayLog = await _db.DayLogs
                 .Where(daylog => daylog.UserId == user.Id)
                 .Where(daylog => daylog.day == today)
+                .Include(dayLog => dayLog.Logs)
                 .FirstOrDefaultAsync();
 
             if(todayDayLog is null)
@@ -128,11 +131,13 @@ namespace BulletJournaling.AppMVC.Controllers
             }
             else
             {
-                _db.DayLogs
-                    .FirstOrDefault(dayLog => dayLog.Id == todayDayLog.Id)
-                    .Logs.Remove(deletingLog);
+                todayDayLog.Logs.Remove(deletingLog);
+                if(todayDayLog.Logs.Count == 0)
+                {
+                    todayDayLog.HasLog = false;
+                }
                 await _db.SaveChangesAsync();
-
+                
                 return RedirectToAction("Index", "Log");
                 
             }
