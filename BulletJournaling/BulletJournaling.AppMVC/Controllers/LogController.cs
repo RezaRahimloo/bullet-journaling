@@ -12,16 +12,13 @@ namespace BulletJournaling.AppMVC.Controllers
 {
     public class LogController : Controller
     {
-        private readonly LogProvider _logProvider;
         private readonly AppDb _db;
         private readonly SignInManager<AppUser> _signinManager;
         private readonly UserManager<AppUser> _userManager;
-        public LogController(LogProvider logProvider, 
-                             AppDb db, 
+        public LogController(AppDb db, 
                              SignInManager<AppUser> signinManager, 
                              UserManager<AppUser> userManager)
         {
-            _logProvider = logProvider;
             _db = db;
             _signinManager = signinManager;
             _userManager = userManager;
@@ -30,6 +27,7 @@ namespace BulletJournaling.AppMVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            // get the user so we can find its Logs
             var user = await _userManager.GetUserAsync(User);
             if(user is not null)
             {
@@ -37,7 +35,7 @@ namespace BulletJournaling.AppMVC.Controllers
                 DateOnly fourMonthsAgo = today.AddMonths(-3);
                 var dayLogs = await _db.DayLogs
                     .Where(dayLogs => dayLogs.UserId == user.Id)
-                    .Where(daylog => daylog.day >= fourMonthsAgo && daylog.day <= today)
+                    .Where(daylog => daylog.HasLog && daylog.day >= fourMonthsAgo && daylog.day <= today)
                     .Include(dayLogs => dayLogs.Logs)
                     .OrderBy(log => log.day)
                     .ToListAsync();
@@ -47,6 +45,7 @@ namespace BulletJournaling.AppMVC.Controllers
                 }
                 return View(dayLogs);
             }
+            //if our user is null return an empty model
             return View(new List<DayLog>());
             
         }
@@ -88,7 +87,6 @@ namespace BulletJournaling.AppMVC.Controllers
                         day = DateOnly.FromDateTime(DateTime.Now),
                         Logs = logs
                     });
-                    await _db.SaveChangesAsync();
                 }
                 else
                 {
@@ -110,8 +108,7 @@ namespace BulletJournaling.AppMVC.Controllers
             var user = await _userManager.GetUserAsync(User);
 
             DateOnly today = DateOnly.FromDateTime(DateTime.Now);
-            DateOnly fourMonthsAgo = today.AddMonths(-3);
-            fourMonthsAgo = new(fourMonthsAgo.Year, fourMonthsAgo.Month, 1);
+            
 
             DayLog todayDayLog = await _db.DayLogs
                 .Where(daylog => daylog.UserId == user.Id)

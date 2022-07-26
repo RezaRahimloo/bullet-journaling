@@ -15,6 +15,13 @@ main{
     flex-direction: column;
     align-items: center;
 }
+.noData{
+    margin: 20px 0;
+}
+.start{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
 #smoking-calender{
     display: flex;
     flex-direction: row;

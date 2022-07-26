@@ -5,7 +5,7 @@
     int proccessedDays = 0;
     int dataIndex = 0;
     DateOnly today = DateOnly.FromDateTime(DateTime.Now);
-    DayLog todayLog = Model.FirstOrDefault(dayLog => dayLog.day == today);
+    //DayLog todayLog = Model.FirstOrDefault(dayLog => dayLog.day == today);
 }
 
 @section Styles {
@@ -17,7 +17,8 @@
 }
 @if (Model.Count == 0)
 {
-    <h1>No data</h1>
+    <h1 class="noData">No data</h1>
+    <h3 class="start">Start Adding you progress here</h3>
 }
 else
 {
@@ -109,13 +110,13 @@ else
                             </div>
                             {dataIndex++;}
                         }
-                        else
+                        else 
                         {
                             
                             <div class="day log dropdown" data-did="false" data-date="">
 
                             </div>
-                            {dataIndex++;}
+                            
                         }
                         proccessedDays++;
                         thisMonthsProccessed++;

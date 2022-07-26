@@ -21,6 +21,13 @@ input[type=number] {
     margin-top: 60px;
     
 } */
+.noData{
+    margin: 20px 0;
+}
+.start{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
 #log-calender{
     display: flex;
     flex-direction: row;
