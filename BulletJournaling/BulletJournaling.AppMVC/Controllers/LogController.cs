@@ -26,20 +26,29 @@ namespace BulletJournaling.AppMVC.Controllers
             _signinManager = signinManager;
             _userManager = userManager;
         }
-        // public IActionResult Index()
-        // {
-        //     return View(_logProvider.GetDayLogs());
-        // }
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
+            if(user is not null)
+            {
+                DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+                DateOnly fourMonthsAgo = today.AddMonths(-3);
+                var dayLogs = await _db.DayLogs
+                    .Where(dayLogs => dayLogs.UserId == user.Id)
+                    .Where(daylog => daylog.day >= fourMonthsAgo && daylog.day <= today)
+                    .Include(dayLogs => dayLogs.Logs)
+                    .OrderBy(log => log.day)
+                    .ToListAsync();
+                if(dayLogs is null)
+                {
+                    return View(new List<DayLog>());
+                }
+                return View(dayLogs);
+            }
+            return View(new List<DayLog>());
             
-            var dayLogs = await _db.DayLogs
-                .Include(dayLogs => dayLogs.Logs)
-                .OrderBy(log => log.day)
-                .ToListAsync();
-            return View(dayLogs);
         }
         [Authorize]
         [HttpPost]
@@ -73,26 +82,44 @@ namespace BulletJournaling.AppMVC.Controllers
             }
             return PartialView("_AddTodayPartial", model);
         }
-        //[AllowAnonymous]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        // public async Task<IActionResult> AddToday(LogModel model)
-        // {
-        //     if(ModelState.IsValid)
-        //     {
-        //         _logProvider.AddToday(model);
-        //         return RedirectToAction("Index", "Log");
-        //     }
-        //     return PartialView("_AddTodayPartial", model);
-        // }
+        [Authorize]
         [HttpPost]
-        public async Task<IActionResult> DeleteLog(int logId)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteLog(Guid logId)
         {
-            if(_logProvider.DeleteLog(logId))
+            
+            var user = await _userManager.GetUserAsync(User);
+
+            DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+            DateOnly fourMonthsAgo = today.AddMonths(-3);
+            fourMonthsAgo = new(fourMonthsAgo.Year, fourMonthsAgo.Month, 1);
+
+            DayLog todayDayLog = await _db.DayLogs
+                .Where(daylog => daylog.UserId == user.Id)
+                .Where(daylog => daylog.day == today)
+                .FirstOrDefaultAsync();
+
+            if(todayDayLog is null)
             {
-                return RedirectToAction("Index", "Log");
+                return BadRequest("Bad Request: the log doesn't exist!");
             }
-            return BadRequest("Bad Request: the log doesn't exist!");
+
+            Log deletingLog = todayDayLog.Logs.FirstOrDefault(log => log.Id == logId);
+            if(deletingLog is null)
+            {
+                return BadRequest("Bad Request: the log doesn't exist!");
+            }
+            else
+            {
+                _db.DayLogs
+                    .FirstOrDefault(dayLog => dayLog.Id == todayDayLog.Id)
+                    .Logs.Remove(deletingLog);
+                await _db.SaveChangesAsync();
+
+                return RedirectToAction("Index", "Log");
+                
+            }
+            
         }
     }
 }
