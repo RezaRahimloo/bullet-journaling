@@ -65,8 +65,12 @@ else
                             if(dataIndex <Model.Count && 
                                Model[dataIndex].Date > lastFourMonths.AddDays(thisMonthsProccessed))
                             {
-                                <div class="day log dropdown" data-did="false" data-date="">
-
+                                <div class="day smoking dropdown" data-did="false" data-date="">
+                                    <div class="dropdown-content">
+                                        <span class="number info">
+                                            You didn't smoke. Good job!
+                                        </span>
+                                    </div>
                                 </div>
                             }
                             else if(dataIndex < Model.Count && @Model[dataIndex].DidSmoke)
@@ -89,7 +93,11 @@ else
                             else
                             {
                                 <div class="day smoking dropdown" data-did="false">
-
+                                    <div class="dropdown-content">
+                                        <span class="number info">
+                                            You didn't smoke. Good job!
+                                        </span>
+                                    </div>
                                 </div>
                                 
                             }
