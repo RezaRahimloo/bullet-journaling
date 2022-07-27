@@ -52,9 +52,17 @@ $(function () {
 
     function onUserDeleteClick(){
         let url = "/smoking/DeleteToday";
+
+        let antiForgeryToken = $("#add-smokes-form input[name = '__RequestVerificationToken']").val();
+
+        let token = {
+            __RequestVerificationToken: antiForgeryToken
+        }
+
         $.ajax({
-            type: "DELETE",
+            type: "POST",
             url: url,
+            data: token,
             success: () => {
                 location.href = "/smoking/Index";
             }
@@ -63,9 +71,17 @@ $(function () {
 
     function onUserAddOneClick(){
         let url = "/smoking/AddACigar";
+
+        let antiForgeryToken = $("#add-smokes-form input[name = '__RequestVerificationToken']").val();
+
+        let token = {
+            __RequestVerificationToken: antiForgeryToken
+        }
+
         $.ajax({
-            type: "PUT",
+            type: "POST",
             url: url,
+            data: token,
             success: () => {
                 location.href = "/smoking/Index";
             }

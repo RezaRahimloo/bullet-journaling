@@ -26,6 +26,7 @@ namespace BulletJournaling.AppMVC.Controllers
             _signinManager = signInManager;
             _userManager = userManager;
         }
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -51,6 +52,7 @@ namespace BulletJournaling.AppMVC.Controllers
             }
             return View(new List<Smoking>());
         }
+
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -82,7 +84,7 @@ namespace BulletJournaling.AppMVC.Controllers
                     await _db.SaveChangesAsync();
                     return RedirectToAction("Index", "Smoking");
                 }
-                else if(smoking.Number > 0)
+                else
                 {
                     await _db.AddAsync(new Smoking
                         {
@@ -98,26 +100,56 @@ namespace BulletJournaling.AppMVC.Controllers
             }
             return PartialView("_AddTodayPartial", smoking);
         }
-        // [HttpPost]
-        // public async Task<IActionResult> AddToday(SmokingModel smoking)
-        // {
-        //     if(ModelState.IsValid)
-        //     {
-        //         _smokeProvider.AddToday(smoking);
-        //         return RedirectToAction("Index", "Smoking");
-        //     }
-        //     return PartialView("_AddTodayPartial", smoking);
-        // }
-        [HttpPut]
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddACigar()
         {
-            _smokeProvider.AddOne();
+            var user = await _userManager.GetUserAsync(User);
+
+            DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+
+
+            var todaySmoking = await _db.Smokings
+                .Where(s => s.UserId == user.Id)
+                .FirstOrDefaultAsync(s => s.Date == today);
+
+            if(todaySmoking is not null)
+            {
+                todaySmoking.Number++;
+                todaySmoking.DidSmoke = true;
+                await _db.SaveChangesAsync();
+            }
+            else
+            {
+                await _db.AddAsync(new Smoking
+                    {
+                        UserId = user.Id,
+                        Number = 1,
+                        Date = today,
+                        DidSmoke = true
+                    });
+                await _db.SaveChangesAsync();
+            }
             return RedirectToAction("Index", "Smoking");
         }
-        [HttpDelete]
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteToday()
         {
-            _smokeProvider.DeleteToday();
+            var user = await _userManager.GetUserAsync(User);
+
+            DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+
+
+            var todaySmoking = await _db.Smokings
+                .Where(s => s.UserId == user.Id)
+                .FirstOrDefaultAsync(s => s.Date == today);
+            
+            _db.Remove(todaySmoking);
+            await _db.SaveChangesAsync();
+
             return RedirectToAction("Index", "Smoking");
         }
        
