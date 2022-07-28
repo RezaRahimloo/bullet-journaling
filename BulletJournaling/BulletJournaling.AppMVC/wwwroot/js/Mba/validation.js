@@ -49,20 +49,22 @@ $(function () {
     function onAddLessonClick(){
         let url = "/Mba/AddLesson";
 
-        let lesson = $("textarea[name = 'Lesson']").val();
-
+        let lesson = $("textarea[name = 'LessonContext']").val();
+        let antiForgeryToken = $("#add-log-form input[name = '__RequestVerificationToken']").val();
         let userInput = {
-            Lesson: lesson,
-            Id: -1
+            __RequestVerificationToken: antiForgeryToken,
+            LessonContext: lesson
         }
-        console.log(userInput.Lesson);
+        console.log(userInput);
         $.ajax({
             type: "POST",
             url: url,
             data: userInput,
             success: (data) => {//the data returned from server in this case its _UserLoginPartial, Partieal view
+                console.log(data);
                 let hasErrors = false
                 let parsed = $.parseHTML(data);
+                console.log(parsed);
                 if($(parsed).find("span.property-errors.field-validation-error").length > 0){
                     hasErrors = true
                 }
@@ -88,9 +90,14 @@ $(function () {
     }
     function clearToday(){
         let url = `/Mba/ClearToday`;
+        let antiForgeryToken = $("#add-log-form input[name = '__RequestVerificationToken']").val();
+        let antiForgeryTokenObj = {
+            __RequestVerificationToken: antiForgeryToken
+        };
         $.ajax({
             type: "POST",
             url: url,
+            data: antiForgeryTokenObj,
             success: (data) => {
                 location.href = "/Mba/Index"; 
             },
@@ -106,15 +113,17 @@ $(function () {
 });
 function deleteLesson(elm){
     let url = `/Mba/DeleteLesson`;
+    let antiForgeryToken = $("#add-log-form input[name = '__RequestVerificationToken']").val();
     let deleteId = {
+        __RequestVerificationToken: antiForgeryToken,
         id: elm.dataset.id
     }
     $.ajax({
-        type: "DELETE",
+        type: "POST",
         url: url,
         data: deleteId,
         success: (data) => {
-            location.href = "/Mba/Index"; 
+            location.href = "/Mba/Index";
         },
         error: (xhr, ajaxOptions, thrownError) => {
             var errorText = "Status: " + xhr.status + " - " + xhr.statusText;

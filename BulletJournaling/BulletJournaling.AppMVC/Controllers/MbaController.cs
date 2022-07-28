@@ -12,16 +12,13 @@ namespace BulletJournaling.AppMVC.Controllers
 {
     public class MbaController : Controller
     {
-        private readonly MbaProvider _mbaProvider;
         private readonly AppDb _db;
         private readonly UserManager<AppUser> _userManager; 
         private readonly SignInManager<AppUser> _signinManager;
-        public MbaController(MbaProvider mbaProvider,
-                             AppDb db,
+        public MbaController(AppDb db,
                              UserManager<AppUser> userManager,
                              SignInManager<AppUser> signinManager)
         {
-            _mbaProvider = mbaProvider;
             _db = db;
             _userManager = userManager;
             _signinManager = signinManager;
@@ -99,25 +96,43 @@ namespace BulletJournaling.AppMVC.Controllers
             return RedirectToAction("Index", "Mba");
         }
 
+        [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddLesson(LessonModel lessonModel)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddLesson(Lesson lesson)
         {
-            //lesson.Id = -1;
-            Console.WriteLine(lessonModel.Id);
-            Console.WriteLine(lessonModel.Lesson);
+            
             if(!ModelState.IsValid)
             {
-                return PartialView("_AddTodayLessonPartial");
+                Console.WriteLine("Invalid model");
+                return PartialView("_AddTodayLessonPartial", lesson);
             }
-            if(!_mbaProvider.AddLesson(lessonModel))
+
+            var user = await _userManager.GetUserAsync(User);
+
+            DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+
+            Mba todayMba = await _db.Mbas
+                .Where(m => m.UserId == user.Id)
+                .Where(m => m.Date == today)
+                .Include(m => m.ImportantLessons)
+                .FirstOrDefaultAsync();
+
+            if(todayMba is null)
             {
-                return BadRequest("Lesson cannot be added!");
+                return BadRequest("you need to have taken an MBA class in order to add a lesson of it!");
             }
+            todayMba.ImportantLessons.Add(lesson);
+
+            _db.Update(todayMba);
+            await _db.SaveChangesAsync();
+            Console.WriteLine("added model");
             return RedirectToAction("Index", "Mba");
         }
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ClearToday()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -139,13 +154,35 @@ namespace BulletJournaling.AppMVC.Controllers
             return RedirectToAction("Index", "Mba");
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteLesson(int id)
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteLesson(Guid id)
         {
-            if(!_mbaProvider.DeleteLessonToday(id))
+            AppUser user = await _userManager.GetUserAsync(User);
+
+            DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+
+            Mba todayMba = await _db.Mbas
+                .Where(m => m.UserId == user.Id)
+                .Where(m => m.Date == today)
+                .Include(m => m.ImportantLessons)
+                .FirstOrDefaultAsync();
+
+            if(todayMba is null)
             {
-                return BadRequest("this item does not exist!");
+                return BadRequest("You have not taken a class today!");
             }
+
+            var deletingLesson = todayMba.ImportantLessons.FirstOrDefault(lesson => lesson.Id == id);
+            
+            if(deletingLesson is null)
+            {
+                return NotFound("Lesson not found in todays class!");
+            }
+
+            _db.Remove(deletingLesson);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index", "Mba");
         }
     }
