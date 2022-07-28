@@ -1,5 +1,10 @@
+using BulletJournaling.AppMVC.Data;
+using BulletJournaling.AppMVC.Data.DatabaseModels;
 using BulletJournaling.AppMVC.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using TestServices;
 
@@ -8,31 +13,91 @@ namespace BulletJournaling.AppMVC.Controllers
     public class MbaController : Controller
     {
         private readonly MbaProvider _mbaProvider;
-        public MbaController(MbaProvider mbaProvider)
+        private readonly AppDb _db;
+        private readonly UserManager<AppUser> _userManager; 
+        private readonly SignInManager<AppUser> _signinManager;
+        public MbaController(MbaProvider mbaProvider,
+                             AppDb db,
+                             UserManager<AppUser> userManager,
+                             SignInManager<AppUser> signinManager)
         {
             _mbaProvider = mbaProvider;
+            _db = db;
+            _userManager = userManager;
+            _signinManager = signinManager;
         }
-        public IActionResult Index()
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View(_mbaProvider.GetMbaModels());
+            if(_signinManager.IsSignedIn(User))
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+                DateOnly threeMonthsAgo = today.AddMonths(-3);
+                threeMonthsAgo = new(threeMonthsAgo.Year, threeMonthsAgo.Month, 1);
+
+                List<Mba> mbas = await _db.Mbas
+                    .Where(mba => mba.UserId == user.Id)
+                    .Where(mba => mba.DidDo)
+                    .Where(mba => mba.Date >= threeMonthsAgo)
+                    .ToListAsync();
+
+                if(mbas is null)
+                {
+                    return View(new List<Mba>());
+                }
+
+                return View(mbas);
+            }
+
+            return View(new List<Mba>());
         }
+
+        [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddMba(MbaModel mba)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddMba(Mba mba)
         {
             mba.DidDo = false;
-            Console.WriteLine(mba.Type);
-            Console.WriteLine(mba.Part);
+
             if(!ModelState.IsValid)
             {
-                return PartialView("_AddTodayMbaPartial");
+                return PartialView("_AddTodayMbaPartial", mba);
             }
+            var user = await _userManager.GetUserAsync(User);
+            
+            DateOnly today = DateOnly.FromDateTime(DateTime.Now);
             mba.DidDo = true;
-            if(!_mbaProvider.AddMba(mba))
+
+            Mba todayMba = await _db.Mbas
+                .Where(m => m.UserId == user.Id)
+                .FirstOrDefaultAsync(m => m.Date == today);
+
+            if(todayMba is null)
             {
-                return BadRequest("MBA Session could not be added");
+                await _db.AddAsync(new Mba
+                {
+                    UserId = user.Id,
+                    DidDo = true,
+                    Type = mba.Type,
+                    Part = mba.Part,
+                    Date = today
+                });
+                await _db.SaveChangesAsync();
+            }
+            else
+            {
+                todayMba.DidDo = true;
+                todayMba.Part = todayMba.Part;
+                todayMba.Type = todayMba.Type;
+                _db.Update(todayMba);
+                await _db.SaveChangesAsync();
             }
             return RedirectToAction("Index", "Mba");
         }
+
         [HttpPost]
         public async Task<IActionResult> AddLesson(LessonModel lessonModel)
         {
@@ -49,6 +114,7 @@ namespace BulletJournaling.AppMVC.Controllers
             }
             return RedirectToAction("Index", "Mba");
         }
+
         [HttpDelete]
         public async Task<IActionResult> ClearToday()
         {
@@ -58,6 +124,7 @@ namespace BulletJournaling.AppMVC.Controllers
             }
             return RedirectToAction("Index", "Mba");
         }
+
         [HttpDelete]
         public async Task<IActionResult> DeleteLesson(int id)
         {

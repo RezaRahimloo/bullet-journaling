@@ -35,7 +35,7 @@ namespace BulletJournaling.AppMVC.Controllers
                 DateOnly fourMonthsAgo = today.AddMonths(-3);
                 var dayLogs = await _db.DayLogs
                     .Where(dayLogs => dayLogs.UserId == user.Id)
-                    .Where(daylog => daylog.HasLog && daylog.day >= fourMonthsAgo && daylog.day <= today)
+                    .Where(daylog => daylog.HasLog && daylog.day >= fourMonthsAgo)
                     .Include(dayLogs => dayLogs.Logs)
                     .OrderBy(log => log.day)
                     .ToListAsync();

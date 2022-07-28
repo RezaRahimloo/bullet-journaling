@@ -40,7 +40,7 @@ namespace BulletJournaling.AppMVC.Controllers
 
                 var smokingList = await _db.Smokings
                     .Where(smoking => smoking.UserId == user.Id)
-                    .Where(smoking => smoking.Date <= today && smoking.Date >= fourMonthsAgo)
+                    .Where(smoking => smoking.Date >= fourMonthsAgo)
                     .Where(smoking => smoking.DidSmoke)
                     .OrderBy(smoking => smoking.Date)
                     .ToListAsync();
