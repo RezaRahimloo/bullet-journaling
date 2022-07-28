@@ -1,7 +1,9 @@
-@model List<MbaModel>;
+@using BulletJournaling.AppMVC.Data.DatabaseModels;
+@model List<Mba>;
 @{
     ViewData["Title"] = "MBA";
     int proccessedDays = 0;
+    int dataIndex = 0;
     var today = DateOnly.FromDateTime(DateTime.Now);
 }
 @section Styles {
@@ -11,6 +13,13 @@
     <script src="~/js/Mba/mba.js" asp-append-version="true"></script>
     <script src="~/js/Mba/validation.js" asp-append-version="true"></script>
 }
+@if (Model.Count == 0)
+{
+    <h1 class="noData">No data</h1>
+    <h3 class="start">Start Adding you progress here</h3>
+}
+else
+{
 <div id="log-calender" class="calender">
     @for (int month = -3; month < 1; month++)
     {  
@@ -51,23 +60,29 @@
                         {
                             continue;
                         }
-                        if(@Model[proccessedDays].DidDo)
+                        if(dataIndex < Model.Count && Model[dataIndex].Date > lastFourMonths.AddDays(thisMonthsProccessed))
                         {
-                            <div class="day log dropdown" data-did="true" data-date="" tabindex="@proccessedDays">
+                            <div class="day log dropdown" data-did="false" data-date="">
+
+                            </div>
+                        }
+                        else if(dataIndex < Model.Count && @Model[dataIndex].DidDo)
+                        {
+                            <div class="day log dropdown" data-did="true" data-date="" tabindex="@dataIndex">
                                 <div class="dropdown-content">
                                     <div class="title info">
-                                        @Model[proccessedDays].Type Class
+                                        @Model[dataIndex].Type Class
                                     </div>
                                     <div class="title info">
-                                        Part @Model[proccessedDays].Part
+                                        Part @Model[dataIndex].Part
                                     </div>
                                 </div>
                                 <ul class="important-lessons">
-                                    @foreach(var lesson in Model[proccessedDays].ImportantLessons)
+                                    @foreach(var lesson in Model[dataIndex].ImportantLessons)
                                     {
                                         <li class="important-lesson">
-                                            @lesson.Lesson
-                                            @if(Model[proccessedDays].Date == today)
+                                            @lesson.LessonContext
+                                            @if(Model[dataIndex].Date == today)
                                             {
                                                 <span class="deleteLesson" data-id="@lesson.Id" onclick="deleteLesson(this)">
                                                     <img class="delete-lesson-svg" src="~/svgs/delete_red.svg" alt="delete">
@@ -77,6 +92,7 @@
                                     }
                                 </ul>
                             </div>
+                            {dataIndex++;}
                         }
                         else
                         {
@@ -96,6 +112,8 @@
         </div>
     }
 </div>
+}
+
 <button id="add-class">Add Today's Class</button>
 <button id="clear-today">Clear Today's Class</button>
 <div id="log-form-wrapper">
@@ -107,7 +125,6 @@
             ImportantLessons = new List<LessonModel>()
         }"/>
 </div>
-
 <div id="addLessonWrapper">
     <partial name="_AddTodayLessonPartial" model = "new LessonModel
         {
