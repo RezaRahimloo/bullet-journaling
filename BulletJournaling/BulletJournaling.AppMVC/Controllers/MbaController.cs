@@ -116,13 +116,26 @@ namespace BulletJournaling.AppMVC.Controllers
             return RedirectToAction("Index", "Mba");
         }
 
-        [HttpDelete]
+        [Authorize]
+        [HttpPost]
         public async Task<IActionResult> ClearToday()
         {
-            if(!_mbaProvider.ClearToday())
+            var user = await _userManager.GetUserAsync(User);
+
+            DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+
+            var deletingMba = await _db.Mbas
+                .Where(m => m.UserId == user.Id)
+                .FirstOrDefaultAsync(m => m.DidDo && m.Date == today);
+            
+            if(deletingMba is null)
             {
-                return BadRequest("Today has no MBA Class record!");
+                return BadRequest("Item does not exist!");
             }
+
+            _db.Mbas.Remove(deletingMba);
+            await _db.SaveChangesAsync();
+
             return RedirectToAction("Index", "Mba");
         }
 

@@ -89,7 +89,7 @@ $(function () {
     function clearToday(){
         let url = `/Mba/ClearToday`;
         $.ajax({
-            type: "DELETE",
+            type: "POST",
             url: url,
             success: (data) => {
                 location.href = "/Mba/Index"; 
