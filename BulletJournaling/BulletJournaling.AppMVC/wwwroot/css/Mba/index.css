@@ -10,6 +10,13 @@ main{
     margin-top: 60px;
     
 } */
+.noData{
+    margin: 20px 0;
+}
+.start{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
 #log-calender{
     display: flex;
     flex-direction: row;
@@ -213,11 +220,11 @@ button#add-lesson{
     font-size: 101%;
     margin-top: 25px;
 }
-label[for= "Lesson"]{
+label[for= "LessonContext"]{
     font-size: larger;
     margin-top: 40px;
 }
-textarea[name= "Lesson"]{
+textarea[name= "LessonContext"]{
     outline: none;
     margin-top: 20px;
     border-radius: 6px;

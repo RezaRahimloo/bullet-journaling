@@ -42,6 +42,7 @@ namespace BulletJournaling.AppMVC.Controllers
                     .Where(mba => mba.UserId == user.Id)
                     .Where(mba => mba.DidDo)
                     .Where(mba => mba.Date >= threeMonthsAgo)
+                    .Include(mba => mba.ImportantLessons)
                     .ToListAsync();
 
                 if(mbas is null)

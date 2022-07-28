@@ -117,19 +117,18 @@ else
 <button id="add-class">Add Today's Class</button>
 <button id="clear-today">Clear Today's Class</button>
 <div id="log-form-wrapper">
-    <partial name="_AddTodayMbaPartial" model = "new MbaModel
+    <partial name="_AddTodayMbaPartial" model = "new Mba
         {
             DidDo = false,
             Type = string.Empty,
             Part = 0,
-            ImportantLessons = new List<LessonModel>()
+            ImportantLessons = new List<Lesson>()
         }"/>
 </div>
 <div id="addLessonWrapper">
-    <partial name="_AddTodayLessonPartial" model = "new LessonModel
+    <partial name="_AddTodayLessonPartial" model = "new Lesson
         {
-            Id = -1,
-            Lesson = string.Empty
+            LessonContext = string.Empty
         }"/>
 </div>
 <button id="add-lesson">Add a Lesson for today</button>

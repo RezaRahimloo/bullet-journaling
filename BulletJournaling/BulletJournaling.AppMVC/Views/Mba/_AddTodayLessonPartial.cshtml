@@ -1,9 +1,10 @@
-@model LessonModel;
+@using BulletJournaling.AppMVC.Data.DatabaseModels;
+@model Lesson;
 
 
 
 
 <input asp-for="Id" hidden>
-<label asp-for="Lesson" class="property-label"></label>
-<textarea asp-for="Lesson" placeholder="You can write the lesson you learned today here:"></textarea>
-<span asp-validation-for="Lesson" class="property-errors"></span>
+<label asp-for="LessonContext" class="property-label"></label>
+<textarea asp-for="LessonContext" placeholder="You can write a lesson you learned today here:"></textarea>
+<span asp-validation-for="LessonContext" class="property-errors"></span>

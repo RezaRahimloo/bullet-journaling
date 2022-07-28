@@ -5,13 +5,14 @@ $(function () {
     function onUserAddMbaClick() {
         let url = "/Mba/AddMba";
         //input[name = '__RequestVerificationToken'] this is a hidden input field that's automaticaly added by mvc
-        //let antiForgeryToken = $("#UserLoginModal input[name = '__RequestVerificationToken']").val();
+        let antiForgeryToken = $("#add-log-form input[name = '__RequestVerificationToken']").val();
         //alert(antiForgeryToken);
 
         let type = $("#add-log-form input[name = 'Type']").val();
         let part = $("#add-log-form input[name = 'Part']").val();
 
         let userInput = {
+            __RequestVerificationToken: antiForgeryToken,
             Type: type,
             Part: Number(part)
         }
