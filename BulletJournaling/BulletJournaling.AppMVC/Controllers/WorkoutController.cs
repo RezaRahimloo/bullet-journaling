@@ -1,5 +1,10 @@
+using BulletJournaling.AppMVC.Data;
+using BulletJournaling.AppMVC.Data.DatabaseModels;
 using BulletJournaling.AppMVC.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using TestServices;
 
@@ -8,44 +13,112 @@ namespace BulletJournaling.AppMVC.Controllers
     public class WorkoutController : Controller
     {
         private readonly WorkoutProvider _workoutProvider;
-        public WorkoutController(WorkoutProvider workoutProvider)
+        private readonly AppDb _db;
+        private readonly UserManager<AppUser> _userManager; 
+        private readonly SignInManager<AppUser> _signinManager;
+        public WorkoutController(WorkoutProvider workoutProvider,
+                                 AppDb db,
+                                 UserManager<AppUser> userManager,
+                                 SignInManager<AppUser> signinManager)
         {
             _workoutProvider = workoutProvider;
+            _db = db;
+            _userManager = userManager;
+            _signinManager = signinManager;
         }
-        public IActionResult Index()
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View(_workoutProvider.GetWorkouts());
+            if(_signinManager.IsSignedIn(User))
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+
+                var workouts = _db.Workouts
+                    .Where(w => w.UserId == user.Id)
+                    .Where(w => w.didWorkout && w.Date >= today)
+                    .OrderBy(w => w.Date)
+                    .ToListAsync();
+
+                if(workouts is null)
+                {
+                    return View(new List<Workout>());
+                }
+                return View(workouts);
+            }
+            return View(new List<Workout>());
         }
+
+        [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddToday(WorkoutModel workout)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddToday(Workout workout)
         {
-            Console.WriteLine(workout.DurationMintues);
-            Console.WriteLine(workout.Type);
+            
             if(workout.DurationMintues > 0 && !string.IsNullOrEmpty(workout.Type))
             {
                 workout.didWorkout = true;
             }
-            Console.WriteLine(workout.didWorkout);
-            if(ModelState.IsValid)
+            else
             {
-                if(_workoutProvider.AddToday(workout))
-                {
-                    Console.WriteLine("Added");
-                }
-                
-                return RedirectToAction("Index", "Workout");
+                return NoContent();
             }
-            Console.WriteLine("Problem");
-            return PartialView("_AddTodayPartial", workout);
+            var user = await _userManager.GetUserAsync(User);
+
+            DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+
+            Workout todayWorkout = await _db.Workouts
+                .Where(w => w.UserId == user.Id)
+                .FirstOrDefaultAsync(w => w.didWorkout && w.Date == today);
+
+            if(todayWorkout is null)
+            {
+                await _db.Workouts.AddAsync(new Workout
+                {
+                    UserId = user.Id,
+                    DurationMintues = workout.DurationMintues,
+                    Type = workout.Type,
+                    Date = today,
+                    didWorkout = true
+                });
+                await _db.SaveChangesAsync();
+            }
+            else
+            {
+                todayWorkout.didWorkout = true;
+                todayWorkout.DurationMintues = workout.DurationMintues;
+                todayWorkout.Type = workout.Type;
+                
+                _db.Update(todayWorkout);
+                await _db.SaveChangesAsync();
+            }
+            return RedirectToAction("Index", "Workout");
         }
-        [HttpDelete]
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ClearToday()
         {
-            if(_workoutProvider.ClearToday())
+            var user = await _userManager.GetUserAsync(User);
+
+            DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+
+            Workout todayWorkout = await _db.Workouts
+                .Where(w => w.UserId == user.Id)
+                .FirstOrDefaultAsync(w => w.didWorkout && w.Date == today);
+
+            if(todayWorkout is null)
             {
-                return RedirectToAction("Index", "Workout");
+                return NotFound("Workout not found");
             }
-            else return BadRequest("today has no Data");
+
+            _db.Remove(todayWorkout);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Workout");
         }
     }
 }

@@ -37,9 +37,9 @@ namespace BulletJournaling.AppMVC.Controllers
 
                 List<Mba> mbas = await _db.Mbas
                     .Where(mba => mba.UserId == user.Id)
-                    .Where(mba => mba.DidDo)
-                    .Where(mba => mba.Date >= threeMonthsAgo)
+                    .Where(mba => mba.DidDo && mba.Date >= threeMonthsAgo)
                     .Include(mba => mba.ImportantLessons)
+                    .OrderBy(mba => mba.Date)
                     .ToListAsync();
 
                 if(mbas is null)
