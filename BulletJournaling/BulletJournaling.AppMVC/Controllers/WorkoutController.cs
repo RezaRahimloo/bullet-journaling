@@ -35,10 +35,12 @@ namespace BulletJournaling.AppMVC.Controllers
                 var user = await _userManager.GetUserAsync(User);
 
                 DateOnly today = DateOnly.FromDateTime(DateTime.Now);
-
-                var workouts = _db.Workouts
+                DateOnly threeMonthsAgo = today.AddMonths(-3);
+                threeMonthsAgo = new(threeMonthsAgo.Year, threeMonthsAgo.Month, 1);
+                
+                var workouts = await _db.Workouts
                     .Where(w => w.UserId == user.Id)
-                    .Where(w => w.didWorkout && w.Date >= today)
+                    .Where(w => w.didWorkout && w.Date <= today)
                     .OrderBy(w => w.Date)
                     .ToListAsync();
 

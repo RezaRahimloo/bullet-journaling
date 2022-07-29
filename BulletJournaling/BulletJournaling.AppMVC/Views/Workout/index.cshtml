@@ -1,9 +1,11 @@
-
-@model List<WorkoutModel>;
+@using BulletJournaling.AppMVC.Data.DatabaseModels;
+@model List<Workout>;
 
 @{
     ViewData["Title"] = "Workout";
     int proccessedDays = 0;
+    int dataIndex = 0;
+    //var today = DateOnly.FromDateTime(DateTime.Now);
 }
 
 @section Styles {
@@ -13,6 +15,13 @@
     <script src="~/js/workout/index.js" asp-append-version="true"></script>
     <script src="~/js/workout/validation.js" asp-append-version="true"></script>
 }
+@if (Model.Count == 0)
+{
+    <h1 class="noData">No data</h1>
+    <h3 class="start">Start Adding you progress here</h3>
+}
+else
+{
 <div id="workout-calender" class="calender">
     @for (int month = -3; month < 1; month++)
     {  
@@ -54,24 +63,32 @@
                         {
                             continue;
                         }
-                        if(@Model[proccessedDays].didWorkout)
+                        if(dataIndex < Model.Count && Model[dataIndex].Date > lastFourMonths.AddDays(thisMonthsProccessed))
+                        {
+                            <div class="day workout dropdown" data-did="false" data-date="">
+
+                            </div>
+                        }
+                        else if(dataIndex < Model.Count && @Model[dataIndex].didWorkout)
                         {
                             <div class="day workout dropdown" data-did="true">
                                 <div class="dropdown-content">
                                     <div class="type info">
-                                        you worked out your: @Model[proccessedDays].Type
+                                        you worked out your: @Model[dataIndex].Type
                                     </div>
-                                    <div class="duration info" data-duration="@Model[proccessedDays].DurationMintues">
-                                        it took you @Model[proccessedDays].DurationMintues minutes to Finish!
+                                    <div class="duration info" data-duration="@Model[dataIndex].DurationMintues">
+                                        it took you @Model[dataIndex].DurationMintues minutes to Finish!
                                     </div>
                                 </div>
                             </div>
+                            {dataIndex++;}
                         }
                         else
                         {
                             <div class="day workout dropdown" data-did="false">
 
                             </div>
+                            
                         }
                         proccessedDays++;
                         thisMonthsProccessed++;
@@ -85,10 +102,12 @@
         </div>
     }
 </div>
+}
+
 <button id="addToday">Add today's workout</button>
 <button id="clearToday">Clear today</button>
 <div id="log-form-wrapper">
-    <partial name="_AddTodayPartial" model = "new WorkoutModel
+    <partial name="_AddTodayPartial" model = "new Workout
     {
         didWorkout = false,
         Type = string.Empty,

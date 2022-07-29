@@ -4,13 +4,14 @@ $(function () {
     function onUserLoginClick() {
         let url = "/workout/AddToday";
         //input[name = '__RequestVerificationToken'] this is a hidden input field that's automaticaly added by mvc
-        //let antiForgeryToken = $("#UserLoginModal input[name = '__RequestVerificationToken']").val();
+        let antiForgeryToken = $("#add-log-form input[name = '__RequestVerificationToken']").val();
         //alert(antiForgeryToken);
 
         let type = $("#add-log-form input[name = 'Type']").val();
         let durationMintues = $("#add-log-form input[name = 'DurationMintues']").val();
 
         let userInput = {
+            __RequestVerificationToken: antiForgeryToken,
             Type: type,
             DurationMintues: Number(durationMintues)
         }
@@ -46,12 +47,15 @@ $(function () {
     }
     function clearToday(){
         let url = `/workout/ClearToday`;
+        let antiForgeryToken = $("#add-log-form input[name = '__RequestVerificationToken']").val();
+        let token = {
+            __RequestVerificationToken: antiForgeryToken
+        }
         $.ajax({
-            type: "DELETE",
+            type: "POST",
             url: url,
+            data: token,
             success: (data) => {
-                console.log(data);
-                alert("Deleted!"); 
                 location.href = "/workout/Index"; 
             },
             error: (xhr, ajaxOptions, thrownError) => {
