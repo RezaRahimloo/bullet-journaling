@@ -33,7 +33,7 @@ namespace BulletJournaling.AppMVC.Controllers
             model.LoginInvalid = "true";
             if(ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Username,
+                var result = await _signInManager.PasswordSignInAsync(model.UserName,
                                                                       model.Password,
                                                                       model.RememberMe,
                                                                       lockoutOnFailure: false);

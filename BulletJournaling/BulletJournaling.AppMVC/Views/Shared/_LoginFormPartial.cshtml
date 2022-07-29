@@ -1,13 +1,13 @@
 @model LoginModel;
 
-    <form id="login-form" asp-controller="Auth" asp-action="Login">
+    <form id="login-form" asp-controller="Auth" asp-action="Login"  method="post">
         <div asp-validation-summary="All" class="property-errors"></div>
         <input hidden asp-for="LoginInvalid">
         <div class="register-input-wrapper">
-            <label asp-for="Username" class="property-label"></label>
+            <label asp-for="UserName" class="property-label"></label>
             <div class="input-wrapper">
-                <input asp-for="Username" placeholder="Username" class="property-input">
-                <span asp-validation-for="Username" class="property-errors" hidden></span>
+                <input asp-for="UserName" placeholder="User name" class="property-input">
+                <span asp-validation-for="UserName" class="property-errors" hidden></span>
             </div>
         </div>
         <div class="register-input-wrapper">
