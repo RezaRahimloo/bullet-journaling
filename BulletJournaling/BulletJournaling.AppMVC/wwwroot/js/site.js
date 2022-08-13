@@ -83,13 +83,13 @@ $(function () {
         let antiForgeryToken = $("#login-form input[name = '__RequestVerificationToken']").val();
         //alert(antiForgeryToken);
 
-        let userName = $("#login-form input[name = 'Username']").val();
+        let userName = $("#login-form input[name = 'UserName']").val();
         let password = $("#login-form input[name = 'Password']").val();
         let rememberMe = $("#login-form input[name = 'RememberMe']").val();
 
         let userInput = {
             __RequestVerificationToken: antiForgeryToken,
-            Username: userName,
+            UserName: userName,
             Password: password,
             RememberMe: rememberMe
         }
