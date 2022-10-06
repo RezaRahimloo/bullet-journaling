@@ -20,7 +20,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options => {
     options.Password.RequireUppercase = false;})
     .AddEntityFrameworkStores<AppDb>()
     .AddDefaultTokenProviders();
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
 builder.Services.AddControllersWithViews();
 
 //Custom services
